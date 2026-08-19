@@ -36,16 +36,17 @@ When manually triggering the workflow, you can specify:
 
 ## CI-Specific Setup
 
-### Hardcoded Path Compatibility
-The workflow automatically creates the directory structure to match your local hardcoded path:
-- Creates `/Users/nilanid/work/Automation/` directory
-- Creates symbolic link from GitHub Actions' geckodriver to your expected path
-- This ensures your DriverManager.java works without code changes
+### Driver Configuration
+- The workflow downloads and installs geckodriver to `/usr/local/bin/` (system PATH)
+- DriverManager.java automatically detects CI environment and uses PATH-based driver
+- No hardcoded path dependencies in CI environment
+- Additional headless arguments added for stable Firefox execution in CI
 
 ### Headless Execution
 - Browsers run in headless mode for CI environment
 - Xvfb (virtual display) is set up for proper browser rendering
 - `CI=true` environment variable enables headless mode in DriverManager
+- Additional stability arguments: `--disable-gpu`, `--no-sandbox`, `--disable-dev-shm-usage`
 
 ## Artifacts
 

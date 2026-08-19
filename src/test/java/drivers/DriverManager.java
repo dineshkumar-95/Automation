@@ -92,12 +92,21 @@ public final class DriverManager {
             // Add headless mode for CI environments
             if (System.getenv("CI") != null) {
                 options.addArguments("--headless");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
             }
             // Use geckodriver from PATH if available, otherwise try local path
             String geckoDriverPath = System.getProperty("webdriver.gecko.driver");
             if (geckoDriverPath == null || geckoDriverPath.trim().isEmpty()) {
-                // Local development - use project-specific geckodriver
-                System.setProperty("webdriver.gecko.driver", projectDir+"/src/test/java/drivers/geckodriver");
+                // Check if running in CI environment
+                if (System.getenv("CI") != null) {
+                    // In CI, rely on PATH (geckodriver should be installed by workflow)
+                    // No need to set property, FirefoxDriver will find it in PATH
+                } else {
+                    // Local development - use project-specific geckodriver
+                    System.setProperty("webdriver.gecko.driver", projectDir+"/src/test/java/drivers/geckodriver");
+                }
             }
             return new FirefoxDriver(options);
         } else if (browserName.equalsIgnoreCase("chrome")) {
