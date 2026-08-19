@@ -26,7 +26,7 @@ public class CustomerTesting extends BaseTest {
         customerCreatePage.createCustomer(customer);
         customerDetailsPage.verifyAmount();
         customerDetailsPage.waitUntilCustomersPageLoad();
-//        Thread.sleep(1000);
+        Thread.sleep(1000);
 //        throw new Exception();
     }
 //    @Test
