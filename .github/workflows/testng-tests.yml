@@ -52,25 +52,18 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    - name: Set up Xvfb (virtual display)
+    - name: Set up Firefox and dependencies
+      if: env.browserName == 'firefox'
       run: |
-        sudo apt-get update
-        sudo apt-get install -y xvfb
+        sudo apt-get install -y xvfb firefox wget
+    
+    - name: Set up Chrome and dependencies
+      if: env.browserName == 'chrome'
+      run: |
+        sudo apt-get install -y xvfb chromium-browser chromium-chromedriver
     
     - name: Start Xvfb
       run: Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
-    
-    - name: Set up Firefox
-      if: env.browserName == 'firefox'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y firefox
-    
-    - name: Set up Chrome
-      if: env.browserName == 'chrome'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-browser
     
     - name: Set up GeckoDriver (Firefox)
       if: env.browserName == 'firefox'
@@ -85,11 +78,6 @@ jobs:
       run: |
         sudo mkdir -p /Users/nilanid/work/Automation
         sudo ln -sf $(which geckodriver) /Users/nilanid/work/Automation/geckodriver\ 2
-    
-    - name: Set up ChromeDriver (Chrome)
-      if: env.browserName == 'chrome'
-      run: |
-        sudo apt-get install -y chromium-chromedriver
     
     - name: Install dependencies
       run: mvn clean install -DskipTests

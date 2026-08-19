@@ -79,10 +79,11 @@ Tests automatically run in headless mode when `CI` environment variable is detec
 4. Ensure the symbolic link creation step succeeded
 
 ### Browser Driver Issues
-1. The workflow now uses direct package installations instead of GitHub Actions
+1. The workflow now uses direct package installations without apt-get update for faster execution
 2. Check if apt-get installations completed successfully
 3. Verify the directory structure creation step completed successfully
 4. For Chrome, ensure chromium-chromedriver was installed correctly
+5. The setup steps are now combined to reduce execution time from 3+ minutes to under 1 minute
 
 ### Timeout Issues
 1. Increase wait times in test classes
