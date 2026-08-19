@@ -1,76 +1,60 @@
 # GitHub Actions Setup Guide
 
-This document explains how to configure your TestNG automation tests to run in GitHub Actions.
+This document explains how to configure your TestNG UI automation tests to run in GitHub Actions.
 
 ## Prerequisites
 
 1. Your repository must be hosted on GitHub
-2. You need admin access to configure repository secrets
-
-## Setting Up GitHub Secrets
-
-### Required Secrets for LambdaTest Cloud Execution
-
-If you want to run tests on LambdaTest cloud:
-
-1. Go to your GitHub repository
-2. Navigate to **Settings** → **Secrets and variables** → **Actions**
-3. Click **New repository secret**
-4. Add the following secrets:
-
-   - **LT_USERNAME**: Your LambdaTest username (`dineshkec95`)
-   - **LT_ACCESS_KEY**: Your LambdaTest access key (`LT_Dv1wdYJwGCreRE1WmXl1BdTMhZpo8O8HxFBB1PssDGCjFMe`)
-
-### Optional Environment Variables
-
-You can also configure these in your repository settings under **Secrets and variables** → **Actions** → **Variables**:
-
-- **API_BASE_URL**: Base URL for API tests (default: `https://dinesh-kumar-test.chargebee.com`)
+2. Your local tests should be working with the current DriverManager setup
 
 ## Workflow Configuration
 
 The workflow file (`.github/workflows/testng-tests.yml`) supports:
 
 ### Automatic Triggers
-- **Push events**: Runs on `main`, `master`, or `develop` branches
-- **Pull requests**: Runs for PRs targeting main branches
-- **Manual trigger**: Can be triggered manually from GitHub Actions tab
+- **Push events**: Runs on `main`, `master`, or `develop` branches with default Firefox settings
+- **Pull requests**: Runs for PRs targeting main branches with default Firefox settings
+- **Manual trigger**: Can be triggered manually from GitHub Actions tab with custom parameters
 
-### Execution Modes
+### Manual Trigger Parameters
 
-#### Local Browser Execution (Default)
-Runs tests locally in GitHub Actions using headless browsers:
-- Firefox (headless)
-- Chrome (headless)
+When manually triggering the workflow, you can specify:
 
-#### LambdaTest Cloud Execution (Manual)
-To run tests on LambdaTest cloud:
-1. Go to **Actions** tab in your repository
-2. Select **TestNG Automation Tests** workflow
-3. Click **Run workflow**
-4. Select branch and use default options
+- **browserName**: Browser name (firefox, chrome, edge, safari) - Default: `firefox`
+- **platformName**: Platform name (e.g., Windows 11, macOS, Linux) - Default: empty (local execution)
+- **browserVersion**: Browser version (e.g., latest, 120, etc.) - Default: empty (local execution)
 
-## Browser Matrix
+#### Local Execution (Default)
+- Leave `platformName` and `browserVersion` empty
+- Tests run locally in GitHub Actions using headless browsers
+- Supports Firefox and Chrome
 
-The workflow runs tests across multiple browsers:
-- Firefox
-- Chrome
+#### Cloud Execution (LambdaTest)
+- Fill in `platformName` (e.g., "Windows 11")
+- Fill in `browserVersion` (e.g., "latest")
+- Requires LambdaTest credentials configured as GitHub secrets
+
+## CI-Specific Setup
+
+### Hardcoded Path Compatibility
+The workflow automatically creates the directory structure to match your local hardcoded path:
+- Creates `/Users/nilanid/work/Automation/` directory
+- Creates symbolic link from GitHub Actions' geckodriver to your expected path
+- This ensures your DriverManager.java works without code changes
+
+### Headless Execution
+- Browsers run in headless mode for CI environment
+- Xvfb (virtual display) is set up for proper browser rendering
+- `CI=true` environment variable enables headless mode in DriverManager
 
 ## Artifacts
 
 After each run, the following artifacts are uploaded:
-- **test-results-{browser}**: TestNG surefire reports
-- **extent-reports-{browser}**: ExtentReports HTML reports
-- **screenshots-{browser}**: Failure screenshots
-- **api-test-results**: API test results (if applicable)
+- **test-results-{browserName}**: TestNG surefire reports
+- **extent-reports-{browserName}**: ExtentReports HTML reports
+- **screenshots-{browserName}**: Failure screenshots
 
-## CI-Specific Code Changes
-
-The `DriverManager.java` has been updated to:
-- Automatically detect CI environment using `CI` environment variable
-- Run browsers in headless mode when in CI
-- Use WebDriver executables from system PATH in CI
-- Maintain local development behavior with hardcoded paths
+All artifacts are retained for 30 days. The artifact names include the browser name used for execution.
 
 ## Running Tests Locally vs CI
 
@@ -92,22 +76,27 @@ Tests automatically run in headless mode when `CI` environment variable is detec
 1. Check if headless mode is working properly
 2. Verify all required dependencies are in pom.xml
 3. Check test logs in GitHub Actions artifacts
-
-### LambdaTest Authentication Errors
-1. Verify `LT_USERNAME` and `LT_ACCESS_KEY` secrets are set correctly
-2. Ensure your LambdaTest account has sufficient credits
+4. Ensure the symbolic link creation step succeeded
 
 ### Browser Driver Issues
 1. Ensure WebDriver setup actions are working in workflow
 2. Check GitHub Actions logs for driver initialization errors
+3. Verify the directory structure creation step completed successfully
 
 ### Timeout Issues
 1. Increase wait times in test classes
 2. Check if application is accessible from GitHub Actions network
+3. Verify network connectivity to your test application
+
+### Path Issues
+If you see errors about the hardcoded path:
+1. Check the "Create directory structure for hardcoded path" step in workflow logs
+2. Ensure the symbolic link was created successfully
+3. Verify geckodriver is properly installed by the setup action
 
 ## Next Steps
 
 1. Push this workflow to your repository
-2. Configure required secrets
-3. Test the workflow by pushing to a monitored branch
-4. Review test results and artifacts in GitHub Actions tab
+2. Test the workflow by pushing to a monitored branch
+3. Review test results and artifacts in GitHub Actions tab
+4. Debug any issues using the uploaded artifacts and workflow logs
