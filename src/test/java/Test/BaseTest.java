@@ -21,7 +21,7 @@ public abstract class BaseTest {
     public abstract void setupTestClass() throws Exception;
 
     @BeforeClass
-    @Parameters(value = {"browserName", "platformName", "browserVersion", "apiKey"})
+    @Parameters({"browserName", "platformName", "browserVersion", "apiKey"})
     public void beforeClass(
             @Optional("firefox") String browserName,
             @Optional String platformName,

@@ -86,11 +86,30 @@ public final class DriverManager {
     }
 
     private static WebDriver initLocalDriver(String browserName) throws Exception {
+        String projectDir = System.getProperty("user.dir");
         if (browserName.equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.gecko.driver", "/Users/nilanid/work/Automation/geckodriver");
-            return new FirefoxDriver();
+            FirefoxOptions options = new FirefoxOptions();
+            // Add headless mode for CI environments
+            if (System.getenv("CI") != null) {
+                options.addArguments("--headless");
+            }
+            // Use geckodriver from PATH if available, otherwise try local path
+            String geckoDriverPath = System.getProperty("webdriver.gecko.driver");
+            if (geckoDriverPath == null || geckoDriverPath.trim().isEmpty()) {
+                // Local development - use project-specific geckodriver
+                System.setProperty("webdriver.gecko.driver", projectDir+"/src/test/java/drivers/geckodriver");
+            }
+            return new FirefoxDriver(options);
         } else if (browserName.equalsIgnoreCase("chrome")) {
-            return new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            // Add headless mode for CI environments
+            if (System.getenv("CI") != null) {
+                options.addArguments("--headless");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--disable-gpu");
+            }
+            return new ChromeDriver(options);
         } else if (browserName.equalsIgnoreCase("edge")) {
             return new EdgeDriver();
         } else if (browserName.equalsIgnoreCase("safari")) {
