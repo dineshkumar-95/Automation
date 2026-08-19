@@ -3,8 +3,10 @@ name: TestNG UI Tests
 on:
   push:
     branches: [ main, master, develop ]
+
   pull_request:
     branches: [ main, master, develop ]
+
   workflow_dispatch:
     inputs:
       browserName:
@@ -12,105 +14,148 @@ on:
         required: false
         default: 'firefox'
         type: string
+
       platformName:
         description: 'Platform name (e.g., Windows 11, macOS, Linux)'
         required: false
         default: ''
         type: string
+
       browserVersion:
         description: 'Browser version (e.g., latest, 120, etc.)'
         required: false
         default: ''
         type: string
 
+
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Set default values for non-manual triggers
-      if: github.event_name != 'workflow_dispatch'
-      run: |
-        echo "browserName=firefox" >> $GITHUB_ENV
-        echo "platformName=" >> $GITHUB_ENV
-        echo "browserVersion=" >> $GITHUB_ENV
-    
-    - name: Set values from manual trigger
-      if: github.event_name == 'workflow_dispatch'
-      run: |
-        echo "browserName=${{ github.event.inputs.browserName }}" >> $GITHUB_ENV
-        echo "platformName=${{ github.event.inputs.platformName }}" >> $GITHUB_ENV
-        echo "browserVersion=${{ github.event.inputs.browserVersion }}" >> $GITHUB_ENV
-    
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Set up JDK 11
-      uses: actions/setup-java@v4
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
-    
-    - name: Set up Firefox and dependencies
-      if: env.browserName == 'firefox'
-      run: |
-        sudo apt-get install -y xvfb wget snapd
-        # Install Firefox via snap for reliable installation
-        sudo snap install firefox
-        # Create symlink for compatibility
-        sudo ln -sf /snap/bin/firefox /usr/bin/firefox
-        # Verify Firefox installation
-        firefox --version
-    
-    - name: Set up Chrome and dependencies
-      if: env.browserName == 'chrome'
-      run: |
-        sudo apt-get install -y xvfb chromium-browser chromium-chromedriver
-    
-    - name: Start Xvfb
-      run: Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
-    
-    - name: Set up GeckoDriver (Firefox)
-      if: env.browserName == 'firefox'
-      run: |
-        wget https://github.com/mozilla/geckodriver/releases/download/v0.35.0/geckodriver-v0.35.0-linux64.tar.gz
-        tar -xvf geckodriver-v0.35.0-linux64.tar.gz
-        sudo mv geckodriver /usr/local/bin/
-        sudo chmod +x /usr/local/bin/geckodriver
-        geckodriver --version
-    
-    - name: Install dependencies
-      run: mvn clean install -DskipTests
-    
-    - name: Run UI Tests
-      run: mvn test -DbrowserName=${{ env.browserName }} -DplatformName="${{ env.platformName }}" -DbrowserVersion="${{ env.browserVersion }}"
-      env:
-        DISPLAY: :99
-        CI: true
-        LT_USERNAME: ${{ secrets.LT_USERNAME }}
-        LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
-    
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results-${{ env.browserName }}
-        path: target/surefire-reports/
-        retention-days: 30
-    
-    - name: Upload ExtentReports
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: extent-reports-${{ env.browserName }}
-        path: target/test-output/
-        retention-days: 30
-    
-    - name: Upload screenshots
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: screenshots-${{ env.browserName }}
-        path: target/test-output/screenshots/
-        retention-days: 30
+
+      # --------------------------------------------------
+      # Set default values for push / PR
+      # --------------------------------------------------
+      - name: Set default values for non-manual triggers
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          echo "browserName=firefox" >> $GITHUB_ENV
+          echo "platformName=" >> $GITHUB_ENV
+          echo "browserVersion=" >> $GITHUB_ENV
+
+      # --------------------------------------------------
+      # Set values for manual execution
+      # --------------------------------------------------
+      - name: Set values from manual trigger
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "browserName=${{ github.event.inputs.browserName }}" >> $GITHUB_ENV
+          echo "platformName=${{ github.event.inputs.platformName }}" >> $GITHUB_ENV
+          echo "browserVersion=${{ github.event.inputs.browserVersion }}" >> $GITHUB_ENV
+
+      # --------------------------------------------------
+      # Checkout
+      # --------------------------------------------------
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # --------------------------------------------------
+      # Java
+      # --------------------------------------------------
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
+      # --------------------------------------------------
+      # Check Firefox
+      # Selenium Manager will handle GeckoDriver
+      # --------------------------------------------------
+      - name: Check Firefox
+        if: env.browserName == 'firefox'
+        run: |
+          echo "Checking Firefox installation..."
+          which firefox || true
+          firefox --version || true
+          
+          echo "Checking GeckoDriver..."
+          which geckodriver || true
+          geckodriver --version || true
+
+      # --------------------------------------------------
+      # Check Chrome
+      # --------------------------------------------------
+      - name: Check Chrome
+        if: env.browserName == 'chrome'
+        run: |
+          which google-chrome || true
+          google-chrome --version || true
+          
+          which chromedriver || true
+          chromedriver --version || true
+
+      # --------------------------------------------------
+      # Start Xvfb
+      # --------------------------------------------------
+      - name: Start Xvfb
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+
+      # --------------------------------------------------
+      # Install Maven dependencies
+      # --------------------------------------------------
+      - name: Install dependencies
+        run: mvn clean install -DskipTests
+
+      # --------------------------------------------------
+      # Run TestNG UI Tests
+      # --------------------------------------------------
+      - name: Run UI Tests
+        run: |
+          mvn test \
+            -DbrowserName="${{ env.browserName }}" \
+            -DplatformName="${{ env.platformName }}" \
+            -DbrowserVersion="${{ env.browserVersion }}"
+        env:
+          DISPLAY: :99
+          CI: true
+
+          # LambdaTest credentials
+          LT_USERNAME: ${{ secrets.LT_USERNAME }}
+          LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
+
+      # --------------------------------------------------
+      # Upload Surefire test results
+      # --------------------------------------------------
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ env.browserName }}
+          path: target/surefire-reports/
+          retention-days: 30
+
+      # --------------------------------------------------
+      # Upload ExtentReports
+      # --------------------------------------------------
+      - name: Upload ExtentReports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extent-reports-${{ env.browserName }}
+          path: target/test-output/
+          retention-days: 30
+
+      # --------------------------------------------------
+      # Upload screenshots
+      # --------------------------------------------------
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-${{ env.browserName }}
+          path: target/test-output/screenshots/
+          retention-days: 30

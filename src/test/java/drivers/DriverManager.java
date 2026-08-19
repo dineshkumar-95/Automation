@@ -86,44 +86,43 @@ public final class DriverManager {
     }
 
     private static WebDriver initLocalDriver(String browserName) throws Exception {
-        String projectDir = System.getProperty("user.dir");
+
         if (browserName.equalsIgnoreCase("firefox")) {
+
             FirefoxOptions options = new FirefoxOptions();
-            // Add headless mode for CI environments
+
             if (System.getenv("CI") != null) {
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
             }
-            // Use geckodriver from PATH if available, otherwise try local path
-            String geckoDriverPath = System.getProperty("webdriver.gecko.driver");
-            if (geckoDriverPath == null || geckoDriverPath.trim().isEmpty()) {
-                // Check if running in CI environment
-                if (System.getenv("CI") != null) {
-                    // In CI, rely on PATH (geckodriver should be installed by workflow)
-                    // No need to set property, FirefoxDriver will find it in PATH
-                } else {
-                    // Local development - use project-specific geckodriver
-                    System.setProperty("webdriver.gecko.driver", projectDir+"/src/test/java/drivers/geckodriver");
-                }
-            }
+
             return new FirefoxDriver(options);
+
         } else if (browserName.equalsIgnoreCase("chrome")) {
+
             ChromeOptions options = new ChromeOptions();
-            // Add headless mode for CI environments
+
             if (System.getenv("CI") != null) {
                 options.addArguments("--headless");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--disable-gpu");
             }
+
             return new ChromeDriver(options);
+
         } else if (browserName.equalsIgnoreCase("edge")) {
+
             return new EdgeDriver();
+
         } else if (browserName.equalsIgnoreCase("safari")) {
+
             return new SafariDriver();
+
         } else {
+
             throw new Exception(browserName + ":- Is not found");
         }
     }
