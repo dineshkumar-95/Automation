@@ -55,7 +55,13 @@ jobs:
     - name: Set up Firefox and dependencies
       if: env.browserName == 'firefox'
       run: |
-        sudo apt-get install -y xvfb firefox wget
+        sudo apt-get install -y xvfb wget snapd
+        # Install Firefox via snap for reliable installation
+        sudo snap install firefox
+        # Create symlink for compatibility
+        sudo ln -sf /snap/bin/firefox /usr/bin/firefox
+        # Verify Firefox installation
+        firefox --version
     
     - name: Set up Chrome and dependencies
       if: env.browserName == 'chrome'
