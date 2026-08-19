@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [ main, master, develop ]
 
+  repository_dispatch:
+    types:
+      - run-automation-tests
+
   workflow_dispatch:
     inputs:
       browserName:
@@ -38,7 +42,7 @@ jobs:
       # Set default values for push / PR
       # --------------------------------------------------
       - name: Set default values for non-manual triggers
-        if: github.event_name != 'workflow_dispatch'
+        if: github.event_name != 'workflow_dispatch' && github.event_name != 'repository_dispatch'
         run: |
           echo "browserName=firefox" >> $GITHUB_ENV
           echo "platformName=" >> $GITHUB_ENV
@@ -53,6 +57,15 @@ jobs:
           echo "browserName=${{ github.event.inputs.browserName }}" >> $GITHUB_ENV
           echo "platformName=${{ github.event.inputs.platformName }}" >> $GITHUB_ENV
           echo "browserVersion=${{ github.event.inputs.browserVersion }}" >> $GITHUB_ENV
+      # --------------------------------------------------
+      # Set values from development repo
+      # --------------------------------------------------
+      - name: Set values from development PR
+        if: github.event_name == 'repository_dispatch'
+        run: |
+         echo "browserName=${{ github.event.client_payload.browserName }}" >> $GITHUB_ENV
+         echo "platformName=${{ github.event.client_payload.platformName }}" >> $GITHUB_ENV
+         echo "browserVersion=${{ github.event.client_payload.browserVersion }}" >> $GITHUB_ENV
 
       # --------------------------------------------------
       # Checkout
