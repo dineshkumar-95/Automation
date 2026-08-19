@@ -62,21 +62,23 @@ jobs:
     
     - name: Set up Firefox
       if: env.browserName == 'firefox'
-      uses: browser-actions/setup-firefox@latest
-      with:
-        firefox-version: latest
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y firefox
     
     - name: Set up Chrome
       if: env.browserName == 'chrome'
-      uses: browser-actions/setup-chrome@latest
-      with:
-        chrome-version: latest
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
     
     - name: Set up GeckoDriver (Firefox)
       if: env.browserName == 'firefox'
-      uses: browser-actions/setup-geckodriver@latest
-      with:
-        geckodriver-version: latest
+      run: |
+        wget https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-linux64.tar.gz
+        tar -xvf geckodriver-linux64.tar.gz
+        sudo mv geckodriver /usr/local/bin/
+        geckodriver --version
     
     - name: Create directory structure for hardcoded path
       if: env.browserName == 'firefox'
@@ -84,9 +86,10 @@ jobs:
         sudo mkdir -p /Users/nilanid/work/Automation
         sudo ln -sf $(which geckodriver) /Users/nilanid/work/Automation/geckodriver\ 2
     
-    - name: Set up ChromeDriver
+    - name: Set up ChromeDriver (Chrome)
       if: env.browserName == 'chrome'
-      uses: browser-actions/setup-chromedriver@latest
+      run: |
+        sudo apt-get install -y chromium-chromedriver
     
     - name: Install dependencies
       run: mvn clean install -DskipTests

@@ -79,9 +79,10 @@ Tests automatically run in headless mode when `CI` environment variable is detec
 4. Ensure the symbolic link creation step succeeded
 
 ### Browser Driver Issues
-1. Ensure WebDriver setup actions are working in workflow
-2. Check GitHub Actions logs for driver initialization errors
+1. The workflow now uses direct package installations instead of GitHub Actions
+2. Check if apt-get installations completed successfully
 3. Verify the directory structure creation step completed successfully
+4. For Chrome, ensure chromium-chromedriver was installed correctly
 
 ### Timeout Issues
 1. Increase wait times in test classes
