@@ -37,3 +37,5 @@ build/
 ### Secrets ###
 .env
 test-output/ExtentReport.html
+test-output/screenshots/createCustomer1_19082026_104704.png
+test-output/screenshots/createCustomer1_19082026_104718.png

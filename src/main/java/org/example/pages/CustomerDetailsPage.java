@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class CustomerDetailsPage extends BasePage {
     public CustomerDetailsPage(WebDriver driver) {
@@ -34,6 +35,7 @@ public class CustomerDetailsPage extends BasePage {
     public CustomerDetailsPage verifyAmount(){
         WebElement ele1 = total_amount_due_card;
         WebElement ele2 = total_amount_due_card_amount;
+        Assert.assertEquals(1,2);
         return this;
     }
 

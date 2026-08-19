@@ -147,7 +147,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: extent-reports-${{ env.browserName }}
-          path: test-output/ExtentReport.html
+          path: test-output/
           retention-days: 30
 
       # --------------------------------------------------
