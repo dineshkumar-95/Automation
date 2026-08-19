@@ -1,0 +1,44 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Sample Test" parallel="classes" thread-count="1">
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+        <listener class-name="listeners.AnnotationTransformer"/>
+    </listeners>
+
+    <!-- Local execution test (Only browserName passed) -->
+    <test name="LocalFirefoxTest">
+        <parameter name="browserName" value="firefox"/>
+        <classes>
+            <class name="Test.Customer.CustomerTesting"/>
+<!--            <class name="Test.CustomerTest2"/>-->
+        </classes>
+    </test>
+
+    <!-- LambdaTest cloud execution test (browserName, platformName & browserVersion passed) -->
+<!--    <test name="LambdaTestChrome">-->
+<!--        <parameter name="browserName" value="chrome"/>-->
+<!--        <parameter name="platformName" value="Windows 11"/>-->
+<!--        <parameter name="browserVersion" value="latest"/>-->
+<!--        <classes>-->
+<!--            <class name="Test.CustomerTest"/>-->
+<!--&lt;!&ndash;            <class name="Test.CustomerTest2"/>&ndash;&gt;-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!-- Hybrid UI Tests with API Data Setup -->
+<!--    <test name="HybridApiUiTests">-->
+<!--        <parameter name="browserName" value="chrome"/>-->
+<!--        <parameter name="apiKey" value="test_api_key"/> &lt;!&ndash; Replace with actual API key &ndash;&gt;-->
+<!--        <classes>-->
+<!--            <class name="Test.CustomerApiDataTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!-- API Tests - No browser required -->
+<!--    <test name="CustomerAPITests">-->
+<!--        <parameter name="apiBaseUrl" value="https://dinesh-kumar-test.chargebee.com"/>-->
+<!--        <classes>-->
+<!--            <class name="api.CustomerApiTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>
