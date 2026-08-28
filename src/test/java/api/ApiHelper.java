@@ -37,7 +37,7 @@ public class ApiHelper {
             .auth().basic(apiKey, "")
             .body(customerRequest)
         .when()
-            .post(ApiConstants.CUSTOMERS_ENDPOINT);
+            .post(ApiConstants.CREATE_CUSTOMERS_ENDPOINT);
 
         if (response.getStatusCode() == 200) {
             CustomerApiResponse apiResponse = response.as(CustomerApiResponse.class);
@@ -47,98 +47,5 @@ public class ApiHelper {
         }
     }
 
-    /**
-     * Get customer details by ID
-     */
-    public static CustomerApiResponse.Customer getCustomerById(String customerId) {
-        Response response = given()
-            .baseUri(baseUri)
-            .contentType("application/json")
-            .accept("application/json")
-            .auth().basic(apiKey, "")
-            .pathParam("id", customerId)
-        .when()
-            .get(ApiConstants.CUSTOMER_BY_ID_ENDPOINT);
 
-        if (response.getStatusCode() == 200) {
-            CustomerApiResponse apiResponse = response.as(CustomerApiResponse.class);
-            return apiResponse.getCustomer();
-        } else {
-            throw new RuntimeException("Failed to get customer via API. Status: " + response.getStatusCode());
-        }
-    }
-
-    /**
-     * Delete customer by ID
-     */
-    public static boolean deleteCustomer(String customerId) {
-        Response response = given()
-            .baseUri(baseUri)
-            .contentType("application/json")
-            .auth().basic(apiKey, "")
-            .pathParam("id", customerId)
-        .when()
-            .delete(ApiConstants.CUSTOMER_BY_ID_ENDPOINT);
-
-        return response.getStatusCode() == 200;
-    }
-
-    /**
-     * Create a simple test customer via API
-     */
-    public static String createTestCustomer(String firstName, String lastName, String email) {
-        CustomerApiRequest customerRequest = new CustomerApiRequest();
-        customerRequest.setFirstName(firstName);
-        customerRequest.setLastName(lastName);
-        customerRequest.setEmail(email);
-        customerRequest.setCompany("Test Company");
-
-        CustomerApiRequest.BillingAddress billingAddress = new CustomerApiRequest.BillingAddress();
-        billingAddress.setFirstName(firstName);
-        billingAddress.setLastName(lastName);
-        billingAddress.setEmail(email);
-        billingAddress.setLine1("123 Test Street");
-        billingAddress.setCity("Test City");
-        billingAddress.setState("TS");
-        billingAddress.setZip("12345");
-        billingAddress.setCountry("United States");
-        customerRequest.setBillingAddress(billingAddress);
-
-        return createCustomerViaApi(customerRequest);
-    }
-
-    /**
-     * Create a simple test customer via API without billing address
-     */
-    public static String createSimpleTestCustomer(String firstName, String lastName, String email) {
-        CustomerApiRequest customerRequest = new CustomerApiRequest();
-        customerRequest.setFirstName(firstName);
-        customerRequest.setLastName(lastName);
-        customerRequest.setEmail(email);
-        customerRequest.setCompany("Test Company");
-
-        return createCustomerViaApi(customerRequest);
-    }
-
-    /**
-     * Create a test customer with random data
-     */
-    public static String createRandomTestCustomer() {
-        String timestamp = String.valueOf(System.currentTimeMillis());
-        String email = "testuser_" + timestamp + "@example.com";
-        return createTestCustomer("Test", "User_" + timestamp, email);
-    }
-
-    /**
-     * Get API response for raw response handling
-     */
-    public static Response getRawResponse(String endpoint) {
-        return given()
-            .baseUri(baseUri)
-            .contentType("application/json")
-            .accept("application/json")
-            .auth().basic(apiKey, "")
-        .when()
-            .get(endpoint);
-    }
 }

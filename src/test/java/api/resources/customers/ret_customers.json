@@ -1,0 +1,28 @@
+{
+  "customer": {
+    "id": "16BTC8VSnrukqAhx",
+    "first_name": "fn",
+    "email": "email@mail.in",
+    "company": "Chargebee",
+    "auto_collection": "on",
+    "net_term_days": 0,
+    "allow_direct_debit": false,
+    "created_at": 1787195912,
+    "created_from_ip": "101.0.62.24",
+    "taxability": "taxable",
+    "updated_at": 1787195912,
+    "pii_cleared": "active",
+    "channel": "web",
+    "resource_version": 1787195912444,
+    "deleted": false,
+    "object": "customer",
+    "card_status": "no_card",
+    "promotional_credits": 0,
+    "refundable_credits": 0,
+    "excess_payments": 0,
+    "unbilled_charges": 0,
+    "preferred_currency_code": "INR",
+    "mrr": 0,
+    "auto_close_invoices": true
+  }
+}

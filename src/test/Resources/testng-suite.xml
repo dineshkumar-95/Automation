@@ -38,7 +38,7 @@
 <!--    <test name="CustomerAPITests">-->
 <!--        <parameter name="apiBaseUrl" value="https://dinesh-kumar-test.chargebee.com"/>-->
 <!--        <classes>-->
-<!--            <class name="api.CustomerApiTest"/>-->
+<!--            <class name="api.tests.CustomerApiTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
 </suite>
