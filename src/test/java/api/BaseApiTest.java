@@ -29,27 +29,17 @@ public abstract class BaseApiTest {
     public ResponseSpecification responseSpec;
     protected String apiBaseUrl;
     protected String apiKey;
+    public ApiHelper apiHelper;
 
     protected abstract void setupTestClass() throws Exception;
 
     @BeforeClass
     @Parameters({"apiBaseUrl", "apiKey"})
-    public void beforeClass(
-            @Optional("") String apiBaseUrl,
-            @Optional("") String apiKey
-    ) throws Exception {
-        if (apiBaseUrl != null && !apiBaseUrl.trim().isEmpty()) {
-            this.apiBaseUrl = apiBaseUrl.trim();
-        } else {
-            this.apiBaseUrl = "https://" + ApiConstants.TEST_SITE + "." + ApiConstants.DOMAIN;
-        }
+    public void beforeClass(String apiBaseUrl, String apiKey) throws Exception {
+        this.apiBaseUrl = apiBaseUrl.trim();
+        this.apiKey = apiKey.trim();
 
-        if (apiKey != null && !apiKey.trim().isEmpty()) {
-            this.apiKey = apiKey.trim();
-        } else {
-            this.apiKey = ApiConstants.API_KEY;
-        }
-
+        apiHelper = new ApiHelper(apiBaseUrl, apiKey);
         setupRestAssured();
         setupTestClass();
     }
@@ -93,6 +83,7 @@ public abstract class BaseApiTest {
     protected List<String> ignoreFields = Arrays.asList(
             // Customer Fields
             "customer.id",
+            "customer.email",
             "customer.created_at",
             "customer.updated_at",
             "customer.resource_version",

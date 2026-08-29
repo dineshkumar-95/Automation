@@ -1,52 +1,89 @@
 package api;
 
-import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 import org.example.constants.ApiConstants;
+import org.example.models.api.Card;
 import org.example.models.api.CreateCustomerApiRequest;
 import org.example.models.api.Customer;
+import org.example.models.api.Invoice;
+import org.example.models.api.Subscription;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.lessThan;
 
 /**
  * Reusable API helper class for making API calls independent of test framework.
- * This can be used from UI tests to populate test data via API.
+ * Instantiated per test thread to ensure thread safety during parallel UI test execution.
  */
 public class ApiHelper {
 
-    private static String baseUri = "https://dinesh-kumar-test.chargebee.com";
-    private static String apiKey = "test_api_key"; // Should be moved to environment variables
+    private final String baseUri;
+    private final String apiKey;
+    public RequestSpecification requestSpec;
+    public ResponseSpecification responseSpec;
 
     /**
-     * Initialize the API helper with custom configuration
+     * Initialize the API helper with custom base URI and API key
      */
-    public static void init(String baseUrl, String apiKey) {
-        ApiHelper.baseUri = baseUrl;
-        ApiHelper.apiKey = apiKey;
+    public ApiHelper(String baseUri, String apiKey) {
+        this.baseUri = baseUri.trim();
+        this.apiKey = apiKey.trim();
+
+        // Request specification
+        requestSpec = new RequestSpecBuilder()
+                .setBaseUri(this.baseUri)
+                .setContentType(ApiConstants.CONTENT_TYPE_FORM_URLENCODED)
+                .addHeader("Accept", ApiConstants.CONTENT_TYPE_JSON)
+                .log(LogDetail.ALL)
+                .build();
+
+        // Response specification
+        responseSpec = new ResponseSpecBuilder()
+                .expectResponseTime(lessThan(10000L)) // 10 seconds timeout
+                .log(LogDetail.ALL)
+                .build();
+
+    }
+
+    public RequestSpecification getAuthenticatedRequest() {
+        return given()
+            .spec(requestSpec)
+            .auth().basic(this.apiKey, "");
+    }
+
+    public Subscription Subscription(Response response) {
+        return response.jsonPath().getObject("subscription", Subscription.class);
+    }
+
+    public Customer Customer(Response response) {
+        return response.jsonPath().getObject("customer", Customer.class);
+    }
+
+    public Invoice Invoice(Response response) {
+        return response.jsonPath().getObject("invoice", Invoice.class);
+    }
+
+    public Card Card(Response response) {
+        return response.jsonPath().getObject("card", Card.class);
     }
 
     /**
-     * Create a customer via API and return the customer ID
+     * Create a customer via API and return the Response
      */
-    public static String createCustomerViaApi(CreateCustomerApiRequest customerRequest) {
-        customerRequest.setEmail("ass@sdf.com");
-
-        Response response = given()
-            .baseUri(baseUri)
-            .contentType("application/json")
-            .accept("application/json")
-            .auth().basic(apiKey, "")
-            .body(customerRequest)
-        .when()
-            .post(ApiConstants.CREATE_CUSTOMERS_ENDPOINT);
-
-        if (response.getStatusCode() == 200) {
-            Customer apiResponse = response.as(Customer.class);
-            return apiResponse.getId();
-        } else {
-            throw new RuntimeException("Failed to create customer via API. Status: " + response.getStatusCode());
-        }
+    public Response createCustomerViaApi(CreateCustomerApiRequest customerRequest) {
+        return getAuthenticatedRequest()
+                .body(customerRequest.toFormUrlEncoded())
+                .when()
+                .post(ApiConstants.CREATE_CUSTOMERS_ENDPOINT)
+                .then()
+                .spec(responseSpec)
+                .statusCode(ApiConstants.STATUS_OK)
+                .extract()
+                .response();
     }
-
-
 }

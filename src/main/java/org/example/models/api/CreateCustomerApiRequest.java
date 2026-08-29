@@ -1030,4 +1030,113 @@ public class CreateCustomerApiRequest {
         public String getFieldValue() { return fieldValue; }
         public TaxProvidersField setFieldValue(String fieldValue) { this.fieldValue = fieldValue; return this; }
     }
+
+    // ========== FORM URL ENCODING CONVERTER ==========
+
+    public String toFormUrlEncoded() {
+        StringBuilder formParams = new StringBuilder();
+
+        // Top-level fields
+        addFormField(formParams, "id", id);
+        addFormField(formParams, "first_name", firstName);
+        addFormField(formParams, "last_name", lastName);
+        addFormField(formParams, "email", email);
+        addFormField(formParams, "preferred_currency_code", preferredCurrencyCode);
+        addFormField(formParams, "phone", phone);
+        addFormField(formParams, "company", company);
+        addFormField(formParams, "auto_collection", autoCollection);
+        addFormField(formParams, "net_term_days", netTermDays);
+        addFormField(formParams, "allow_direct_debit", allowDirectDebit);
+        addFormField(formParams, "vat_number", vatNumber);
+        addFormField(formParams, "vat_number_prefix", vatNumberPrefix);
+        addFormField(formParams, "entity_identifier_scheme", entityIdentifierScheme);
+        addFormField(formParams, "entity_identifier_standard", entityIdentifierStandard);
+        addFormField(formParams, "registered_for_gst", registeredForGst);
+        addFormField(formParams, "is_einvoice_enabled", isEinvoiceEnabled);
+        addFormField(formParams, "einvoicing_method", einvoicingMethod);
+        addFormField(formParams, "taxability", taxability);
+        addFormField(formParams, "exemption_details", exemptionDetails);
+        addFormField(formParams, "customer_type", customerType);
+        addFormField(formParams, "client_profile_id", clientProfileId);
+        addFormField(formParams, "taxjar_exemption_category", taxjarExemptionCategory);
+        addFormField(formParams, "business_customer_without_vat_number", businessCustomerWithoutVatNumber);
+        addFormField(formParams, "locale", locale);
+        addFormField(formParams, "entity_code", entityCode);
+        addFormField(formParams, "exempt_number", exemptNumber);
+        addFormField(formParams, "meta_data", metaData);
+        addFormField(formParams, "offline_payment_method", offlinePaymentMethod);
+        addFormField(formParams, "auto_close_invoices", autoCloseInvoices);
+        addFormField(formParams, "consolidated_invoicing", consolidatedInvoicing);
+        addFormField(formParams, "token_id", tokenId);
+        addFormField(formParams, "business_entity_id", businessEntityId);
+        addFormField(formParams, "invoice_notes", invoiceNotes);
+
+        // Nested objects
+        if (billingAddress != null) {
+            addFormField(formParams, "billing_address[first_name]", billingAddress.getFirstName());
+            addFormField(formParams, "billing_address[last_name]", billingAddress.getLastName());
+            addFormField(formParams, "billing_address[email]", billingAddress.getEmail());
+            addFormField(formParams, "billing_address[company]", billingAddress.getCompany());
+            addFormField(formParams, "billing_address[phone]", billingAddress.getPhone());
+            addFormField(formParams, "billing_address[line1]", billingAddress.getLine1());
+            addFormField(formParams, "billing_address[line2]", billingAddress.getLine2());
+            addFormField(formParams, "billing_address[line3]", billingAddress.getLine3());
+            addFormField(formParams, "billing_address[city]", billingAddress.getCity());
+            addFormField(formParams, "billing_address[state_code]", billingAddress.getStateCode());
+            addFormField(formParams, "billing_address[state]", billingAddress.getState());
+            addFormField(formParams, "billing_address[zip]", billingAddress.getZip());
+            addFormField(formParams, "billing_address[country]", billingAddress.getCountry());
+            addFormField(formParams, "billing_address[validation_status]", billingAddress.getValidationStatus());
+        }
+
+        if (card != null) {
+            addFormField(formParams, "card[gateway_account_id]", card.getGatewayAccountId());
+            addFormField(formParams, "card[first_name]", card.getFirstName());
+            addFormField(formParams, "card[last_name]", card.getLastName());
+            addFormField(formParams, "card[number]", card.getNumber());
+            addFormField(formParams, "card[expiry_month]", card.getExpiryMonth());
+            addFormField(formParams, "card[expiry_year]", card.getExpiryYear());
+            addFormField(formParams, "card[cvv]", card.getCvv());
+            addFormField(formParams, "card[preferred_scheme]", card.getPreferredScheme());
+        }
+
+        if (entityIdentifiers != null) {
+            for (int i = 0; i < entityIdentifiers.size(); i++) {
+                EntityIdentifier identifier = entityIdentifiers.get(i);
+                addIndexedFormField(formParams, "entity_identifiers[id]", i, identifier.getId());
+                addIndexedFormField(formParams, "entity_identifiers[scheme]", i, identifier.getScheme());
+                addIndexedFormField(formParams, "entity_identifiers[value]", i, identifier.getValue());
+                addIndexedFormField(formParams, "entity_identifiers[standard]", i, identifier.getStandard());
+            }
+        }
+
+        if (taxProvidersFields != null) {
+            for (int i = 0; i < taxProvidersFields.size(); i++) {
+                TaxProvidersField field = taxProvidersFields.get(i);
+                addIndexedFormField(formParams, "tax_providers_fields[provider_name]", i, field.getProviderName());
+                addIndexedFormField(formParams, "tax_providers_fields[field_id]", i, field.getFieldId());
+                addIndexedFormField(formParams, "tax_providers_fields[field_value]", i, field.getFieldValue());
+            }
+        }
+
+        return formParams.toString();
+    }
+
+    private void addFormField(StringBuilder formParams, String fieldName, Object value) {
+        if (value != null) {
+            if (formParams.length() > 0) {
+                formParams.append("&");
+            }
+            formParams.append(fieldName).append("=").append(value);
+        }
+    }
+
+    private void addIndexedFormField(StringBuilder formParams, String fieldName, int index, Object value) {
+        if (value != null) {
+            if (formParams.length() > 0) {
+                formParams.append("&");
+            }
+            formParams.append(fieldName).append("[").append(index).append("]=").append(value);
+        }
+    }
 }

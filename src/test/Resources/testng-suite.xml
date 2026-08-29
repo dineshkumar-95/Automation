@@ -12,8 +12,8 @@
     <test name="LocalFirefoxTest">
         <parameter name="browserName" value="firefox"/>
         <classes>
-            <class name="Test.Customer.CustomerTesting"/>
-<!--            <class name="Test.CustomerTest2"/>-->
+<!--            <class name="Test.Customer.CustomerTesting"/>-->
+            <class name="Test.Subscription.CreateSubscriptionTesting"/>
         </classes>
     </test>
 

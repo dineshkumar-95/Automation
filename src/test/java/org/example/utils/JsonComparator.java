@@ -460,21 +460,25 @@ public class JsonComparator {
     /**
      * Checks if a field path matches an array wildcard pattern
      * Example: "subscription.subscription_items[0].created_at" matches "subscription.subscription_items[*].created_at"
+     * Also handles ID-based paths like "subscription.subscription_items[id=abc].created_at"
      */
     private static boolean matchesArrayWildcard(String fieldPath, String pattern) {
-        // Replace [*] with a regex pattern that matches any array index
-        String regexPattern = pattern.replace("[*]", "\\[\\d+\\]");
-        // Escape other special regex characters except the ones we intentionally use
-        regexPattern = regexPattern.replace(".", "\\.");
-        regexPattern = regexPattern.replace("\\[\\d+\\]", "\\[\\d+\\]");
-
-        // Build proper regex pattern
-        regexPattern = pattern.replace("[*]", "\\[(\\d+)\\]");
-        regexPattern = regexPattern.replace(".", "\\.");
-
-        Pattern compiledPattern = Pattern.compile("^" + regexPattern + "$");
-        Matcher matcher = compiledPattern.matcher(fieldPath);
-
-        return matcher.matches();
+        // Handle numeric array indices like [0], [1], etc.
+        String numericPattern = pattern.replace("[*]", "\\[\\d+\\]");
+        numericPattern = numericPattern.replace(".", "\\.");
+        Pattern compiledNumericPattern = Pattern.compile("^" + numericPattern + "$");
+        if (compiledNumericPattern.matcher(fieldPath).matches()) {
+            return true;
+        }
+        
+        // Handle ID-based array indices like [id=abc123]
+        String idPattern = pattern.replace("[*]", "\\[id=[^\\]]+\\]");
+        idPattern = idPattern.replace(".", "\\.");
+        Pattern compiledIdPattern = Pattern.compile("^" + idPattern + "$");
+        if (compiledIdPattern.matcher(fieldPath).matches()) {
+            return true;
+        }
+        
+        return false;
     }
 }

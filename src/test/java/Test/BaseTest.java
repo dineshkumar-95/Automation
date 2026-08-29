@@ -17,28 +17,25 @@ public abstract class BaseTest {
     public CustomerCreatePage customerCreatePage;
     public CustomersIndexPage customersIndexPage;
     public CustomerDetailsPage customerDetailsPage;
+    public ApiHelper apiHelper;
 
     public abstract void setupTestClass() throws Exception;
 
     @BeforeClass
-    @Parameters({"browserName", "platformName", "browserVersion", "apiKey"})
+    @Parameters({"browserName", "platformName", "browserVersion", "apiBaseUrl", "apiKey"})
     public void beforeClass(
             @Optional("firefox") String browserName,
             @Optional String platformName,
             @Optional String browserVersion,
+            @Optional String apiBaseUrl,
             @Optional String apiKey
     ) throws Exception {
         DriverManager.init(browserName, platformName, browserVersion);
         setDrivers();
+        apiHelper = new ApiHelper(apiBaseUrl, apiKey);
         login();
-        
-        // Initialize API helper if API key is provided
-        if (apiKey != null && !apiKey.trim().isEmpty()) {
-            String apiBaseUrl = "https://" + Constants.TEST_SITE + "." + Constants.DOMAIN;
-            ApiHelper.init(apiBaseUrl, apiKey);
-        }
-        
         setupTestClass();
+
     }
 
     @AfterClass

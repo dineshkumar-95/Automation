@@ -3,6 +3,7 @@ package api.tests;
 import api.BaseApiTest;
 import io.restassured.response.Response;
 import org.example.constants.ApiConstants;
+import org.example.models.api.CreateCustomerApiRequest;
 import org.example.models.api.CreateSubscriptionApiRequest;
 import org.example.models.api.Customer;
 import org.example.models.api.Subscription;
@@ -19,15 +20,22 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 public class SubscriptionApiTest extends BaseApiTest {
-
+        String customerId;
         @Override
         protected void setupTestClass() throws Exception {
                 // Additional setup for subscription tests if needed
+                CreateCustomerApiRequest customerRequest = new CreateCustomerApiRequest()
+                        .setFirstName("Test")
+                        .setLastName("User")
+                        .setEmail("subscription_test_" + System.currentTimeMillis() + "@test.com")
+                        .setCompany("Test Company");
+
+                Response response = apiHelper.createCustomerViaApi(customerRequest);
+                customerId = apiHelper.Customer(response).getId();
         }
 
         @Test(description = "Simple subscription creation - basic fields only")
         public void createSimpleSubscription() throws IOException {
-                String customerId = "169rlTVSlQYNF55n";
 
                 // Simple approach using fluent builders
                 CreateSubscriptionApiRequest request = new CreateSubscriptionApiRequest();
@@ -35,8 +43,7 @@ public class SubscriptionApiTest extends BaseApiTest {
 
                 // Add subscription items
                 request.addSubscriptionItem(new SubscriptionItem().setItemPriceId("ffPlan1-INR-Monthly"));
-                request.addSubscriptionItem(
-                                new SubscriptionItem().setItemPriceId("tieAddon1-INR-Monthly").setQuantity(344));
+                request.addSubscriptionItem(new SubscriptionItem().setItemPriceId("tieAddon1-INR-Monthly").setQuantity(344));
 
                 Response response = getAuthenticatedRequest()
                                 .contentType(ApiConstants.CONTENT_TYPE_FORM_URLENCODED)
