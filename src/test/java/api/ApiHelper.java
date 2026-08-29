@@ -23,7 +23,6 @@ public class ApiHelper {
     public static void init(String baseUrl, String apiKey) {
         ApiHelper.baseUri = baseUrl;
         ApiHelper.apiKey = apiKey;
-        RestAssured.baseURI = baseUrl;
     }
 
     /**

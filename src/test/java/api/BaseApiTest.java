@@ -27,11 +27,29 @@ public abstract class BaseApiTest {
 
     public RequestSpecification requestSpec;
     public ResponseSpecification responseSpec;
+    protected String apiBaseUrl;
+    protected String apiKey;
 
     protected abstract void setupTestClass() throws Exception;
 
     @BeforeClass
-    public void beforeClass() throws Exception {
+    @Parameters({"apiBaseUrl", "apiKey"})
+    public void beforeClass(
+            @Optional("") String apiBaseUrl,
+            @Optional("") String apiKey
+    ) throws Exception {
+        if (apiBaseUrl != null && !apiBaseUrl.trim().isEmpty()) {
+            this.apiBaseUrl = apiBaseUrl.trim();
+        } else {
+            this.apiBaseUrl = "https://" + ApiConstants.TEST_SITE + "." + ApiConstants.DOMAIN;
+        }
+
+        if (apiKey != null && !apiKey.trim().isEmpty()) {
+            this.apiKey = apiKey.trim();
+        } else {
+            this.apiKey = ApiConstants.API_KEY;
+        }
+
         setupRestAssured();
         setupTestClass();
     }
@@ -50,11 +68,9 @@ public abstract class BaseApiTest {
     }
 
     private void setupRestAssured() {
-        // Set base URL from parameter or constants
-        String baseUrl = "https://" + ApiConstants.TEST_SITE + "." + ApiConstants.DOMAIN;
         // Request specification
         requestSpec = new RequestSpecBuilder()
-            .setBaseUri(baseUrl)
+            .setBaseUri(this.apiBaseUrl)
             .setContentType(ApiConstants.CONTENT_TYPE_JSON)
             .addHeader("Accept", ApiConstants.CONTENT_TYPE_JSON)
             .log(LogDetail.ALL)
@@ -71,7 +87,7 @@ public abstract class BaseApiTest {
     protected RequestSpecification getAuthenticatedRequest() {
         return given()
             .spec(requestSpec)
-            .auth().basic(ApiConstants.API_KEY, "");
+            .auth().basic(this.apiKey, "");
     }
 
     protected List<String> ignoreFields = Arrays.asList(

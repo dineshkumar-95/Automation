@@ -23,19 +23,6 @@ public class CustomerApiTest extends BaseApiTest {
 //        requestSpec.header("X-Custom-Header", "value");
     }
 
-//    @Test(description = "Get all customers")
-    public void getCustomers() {
-        getAuthenticatedRequest()
-        .when()
-                .queryParam("limit", "1")
-            .get(ApiConstants.CUSTOMERS_ENDPOINT)
-        .then()
-            .spec(responseSpec)
-            .statusCode(ApiConstants.STATUS_OK);
-//                .log().all();
-//            .body("list", notNullValue());
-    }
-
     // Example of using path parameter to get specific customer
     @Test(description = "Get customer by ID using path parameter")
     public void getCustomerById() throws Exception {
