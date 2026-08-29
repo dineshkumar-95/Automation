@@ -11,6 +11,7 @@ public class ApiConstants {
     public static final String LIST_CUSTOMERS_ENDPOINT = "/api/v2/customers";
     public static final String GET_CUSTOMERS_ENDPOINT = "/api/v2/customers/";
     public static final String SUBSCRIPTIONS_ENDPOINT = "/api/v2/subscriptions";
+    public static final String SUBSCRIPTION_FOR_ITEMS_ENDPOINT = "/api/v2/customers/{customerId}/subscription_for_items";
     public static final String INVOICES_ENDPOINT = "/api/v2/invoices";
     public static final String PLANS_ENDPOINT = "/api/v2/plans";
     

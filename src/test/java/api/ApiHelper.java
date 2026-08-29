@@ -3,8 +3,8 @@ package api;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.example.constants.ApiConstants;
-import org.example.models.api.CustomerApiRequest;
-import org.example.models.api.CustomerApiResponse;
+import org.example.models.api.CreateCustomerApiRequest;
+import org.example.models.api.Customer;
 
 import static io.restassured.RestAssured.given;
 
@@ -29,7 +29,9 @@ public class ApiHelper {
     /**
      * Create a customer via API and return the customer ID
      */
-    public static String createCustomerViaApi(CustomerApiRequest customerRequest) {
+    public static String createCustomerViaApi(CreateCustomerApiRequest customerRequest) {
+        customerRequest.setEmail("ass@sdf.com");
+
         Response response = given()
             .baseUri(baseUri)
             .contentType("application/json")
@@ -40,8 +42,8 @@ public class ApiHelper {
             .post(ApiConstants.CREATE_CUSTOMERS_ENDPOINT);
 
         if (response.getStatusCode() == 200) {
-            CustomerApiResponse apiResponse = response.as(CustomerApiResponse.class);
-            return apiResponse.getCustomer().getId();
+            Customer apiResponse = response.as(Customer.class);
+            return apiResponse.getId();
         } else {
             throw new RuntimeException("Failed to create customer via API. Status: " + response.getStatusCode());
         }

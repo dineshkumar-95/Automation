@@ -1,0 +1,287 @@
+{
+  "subscription": {
+    "id": "16CJ1rVTfcR214N6o",
+    "billing_period": 1,
+    "billing_period_unit": "month",
+    "auto_collection": "off",
+    "customer_id": "169rlTVSlQYNF55n",
+    "status": "active",
+    "current_term_start": 1787990145,
+    "current_term_end": 1790668545,
+    "next_billing_at": 1790668545,
+    "created_at": 1787990145,
+    "started_at": 1787990145,
+    "activated_at": 1787990145,
+    "updated_at": 1787990145,
+    "has_scheduled_changes": false,
+    "channel": "web",
+    "resource_version": 1787990145623,
+    "deleted": false,
+    "object": "subscription",
+    "currency_code": "INR",
+    "subscription_items": [
+      {
+        "item_price_id": "ffPlan1-INR-Monthly",
+        "item_type": "plan",
+        "quantity": 1,
+        "unit_price": 10000,
+        "amount": 10000,
+        "current_term_start": 1787990145,
+        "current_term_end": 1790668545,
+        "next_billing_at": 1790668545,
+        "billing_period": 1,
+        "billing_period_unit": "month",
+        "free_quantity": 0,
+        "object": "subscription_item"
+      },
+      {
+        "item_price_id": "tieAddon1-INR-Monthly",
+        "item_type": "addon",
+        "quantity": 344,
+        "unit_price": 213,
+        "amount": 73200,
+        "current_term_start": 1787990145,
+        "current_term_end": 1790668545,
+        "next_billing_at": 1790668545,
+        "billing_period": 1,
+        "billing_period_unit": "month",
+        "object": "subscription_item"
+      }
+    ],
+    "item_tiers": [
+      {
+        "item_price_id": "tieAddon1-INR-Monthly",
+        "starting_unit": 1,
+        "ending_unit": 100,
+        "price": 100,
+        "pricing_type": "per_unit",
+        "object": "item_tier"
+      },
+      {
+        "item_price_id": "tieAddon1-INR-Monthly",
+        "starting_unit": 101,
+        "ending_unit": 200,
+        "price": 200,
+        "pricing_type": "per_unit",
+        "object": "item_tier"
+      },
+      {
+        "item_price_id": "tieAddon1-INR-Monthly",
+        "starting_unit": 201,
+        "ending_unit": 500,
+        "price": 300,
+        "pricing_type": "per_unit",
+        "object": "item_tier"
+      },
+      {
+        "item_price_id": "tieAddon1-INR-Monthly",
+        "starting_unit": 501,
+        "price": 500,
+        "pricing_type": "per_unit",
+        "object": "item_tier"
+      }
+    ],
+    "due_invoices_count": 1,
+    "due_since": 1787990145,
+    "total_dues": 83200,
+    "mrr": 0,
+    "has_scheduled_advance_invoices": false,
+    "decommissioned": false,
+    "create_pending_invoices": false,
+    "auto_close_invoices": true
+  },
+  "customer": {
+    "id": "169rlTVSlQYNF55n",
+    "first_name": "fn",
+    "email": "email@mail.in",
+    "company": "Chargebee",
+    "auto_collection": "on",
+    "net_term_days": 0,
+    "allow_direct_debit": false,
+    "created_at": 1787159838,
+    "created_from_ip": "101.0.62.24",
+    "taxability": "taxable",
+    "updated_at": 1787917707,
+    "pii_cleared": "active",
+    "channel": "web",
+    "resource_version": 1787917707693,
+    "deleted": false,
+    "object": "customer",
+    "card_status": "valid",
+    "promotional_credits": 0,
+    "refundable_credits": 0,
+    "excess_payments": 0,
+    "unbilled_charges": 0,
+    "preferred_currency_code": "INR",
+    "mrr": 499200,
+    "primary_payment_source_id": "pm_AzZePVVTaiUfV4xq",
+    "payment_method": {
+      "object": "payment_method",
+      "type": "card",
+      "reference_id": "tok_AzZePVVTaiUfV4xr",
+      "gateway": "chargebee",
+      "gateway_account_id": "gw_16CRJJVQppgzI54h",
+      "status": "valid"
+    },
+    "auto_close_invoices": true
+  },
+  "card": {
+    "status": "valid",
+    "gateway": "chargebee",
+    "gateway_account_id": "gw_16CRJJVQppgzI54h",
+    "first_name": "Dineshkumar",
+    "last_name": "M",
+    "iin": "411111",
+    "last4": "1111",
+    "card_type": "visa",
+    "funding_type": "credit",
+    "expiry_month": 12,
+    "expiry_year": 2027,
+    "created_at": 1787917707,
+    "updated_at": 1787917707,
+    "ip_address": "101.0.63.151",
+    "resource_version": 1787917707687,
+    "object": "card",
+    "masked_number": "************1111",
+    "customer_id": "169rlTVSlQYNF55n",
+    "payment_source_id": "pm_AzZePVVTaiUfV4xq"
+  },
+  "invoice": {
+    "id": "8",
+    "customer_id": "169rlTVSlQYNF55n",
+    "subscription_id": "16CJ1rVTfcR214N6o",
+    "recurring": true,
+    "status": "payment_due",
+    "date": 1787990145,
+    "due_date": 1787990145,
+    "net_term_days": 0,
+    "price_type": "tax_exclusive",
+    "exchange_rate": 1.0,
+    "total": 83200,
+    "amount_due": 83200,
+    "amount_adjusted": 0,
+    "amount_paid": 0,
+    "write_off_amount": 0,
+    "credits_applied": 0,
+    "updated_at": 1787990145,
+    "resource_version": 1787990145603,
+    "deleted": false,
+    "object": "invoice",
+    "first_invoice": true,
+    "amount_to_collect": 83200,
+    "round_off_amount": 0,
+    "new_sales_amount": 83200,
+    "has_advance_charges": false,
+    "currency_code": "INR",
+    "base_currency_code": "INR",
+    "generated_at": 1787990145,
+    "is_gifted": false,
+    "term_finalized": true,
+    "channel": "web",
+    "tax": 0,
+    "line_items": [
+      {
+        "id": "li_16CJ1rVTfcR354N6r",
+        "date_from": 1787990145,
+        "date_to": 1790668545,
+        "unit_amount": 10000,
+        "quantity": 1,
+        "amount": 10000,
+        "pricing_model": "flat_fee",
+        "is_taxed": false,
+        "tax_amount": 0,
+        "object": "line_item",
+        "subscription_id": "16CJ1rVTfcR214N6o",
+        "customer_id": "169rlTVSlQYNF55n",
+        "description": "ffPlan1  INR Monthly",
+        "entity_type": "plan_item_price",
+        "entity_id": "ffPlan1-INR-Monthly",
+        "metered": false,
+        "tax_exempt_reason": "tax_not_configured",
+        "discount_amount": 0,
+        "item_level_discount_amount": 0
+      },
+      {
+        "id": "li_16CJ1rVTfcR3D4N6s",
+        "date_from": 1787990145,
+        "date_to": 1790668545,
+        "unit_amount": 213,
+        "quantity": 344,
+        "amount": 73200,
+        "pricing_model": "tiered",
+        "is_taxed": false,
+        "tax_amount": 0,
+        "object": "line_item",
+        "subscription_id": "16CJ1rVTfcR214N6o",
+        "customer_id": "169rlTVSlQYNF55n",
+        "description": "tieAddon1 INR Monthly",
+        "entity_type": "addon_item_price",
+        "entity_id": "tieAddon1-INR-Monthly",
+        "metered": false,
+        "tax_exempt_reason": "tax_not_configured",
+        "discount_amount": 0,
+        "item_level_discount_amount": 0
+      }
+    ],
+    "line_item_tiers": [
+      {
+        "starting_unit": 1,
+        "ending_unit": 100,
+        "quantity_used": 100,
+        "unit_amount": 100,
+        "pricing_type": "per_unit",
+        "object": "line_item_tier",
+        "line_item_id": "li_16CJ1rVTfcR3D4N6s"
+      },
+      {
+        "starting_unit": 101,
+        "ending_unit": 200,
+        "quantity_used": 100,
+        "unit_amount": 200,
+        "pricing_type": "per_unit",
+        "object": "line_item_tier",
+        "line_item_id": "li_16CJ1rVTfcR3D4N6s"
+      },
+      {
+        "starting_unit": 201,
+        "ending_unit": 500,
+        "quantity_used": 144,
+        "unit_amount": 300,
+        "pricing_type": "per_unit",
+        "object": "line_item_tier",
+        "line_item_id": "li_16CJ1rVTfcR3D4N6s"
+      }
+    ],
+    "sub_total": 83200,
+    "linked_payments": [
+
+    ],
+    "applied_credits": [
+
+    ],
+    "reference_transactions": [
+
+    ],
+    "adjustment_credit_notes": [
+
+    ],
+    "issued_credit_notes": [
+
+    ],
+    "linked_orders": [
+
+    ],
+    "dunning_attempts": [
+
+    ],
+    "billing_address": {
+      "first_name": "fn",
+      "company": "Chargebee",
+      "validation_status": "not_validated",
+      "object": "billing_address"
+    },
+    "site_details_at_creation": {
+      "timezone": "Asia/Calcutta"
+    }
+  }
+}

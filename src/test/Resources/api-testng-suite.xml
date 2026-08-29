@@ -10,6 +10,7 @@
         <parameter name="apiBaseUrl" value="https://dinesh-kumar-test.chargebee.com"/>
         <classes>
             <class name="api.tests.CustomerApiTest"/>
+<!--            <class name="api.tests.SubscriptionApiTest"/>-->
         </classes>
     </test>
 </suite>
