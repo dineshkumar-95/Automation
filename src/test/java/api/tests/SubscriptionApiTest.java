@@ -34,7 +34,7 @@ public class SubscriptionApiTest extends BaseApiTest {
                 customerId = apiHelper.Customer(response).getId();
         }
 
-        @Test(description = "Simple subscription creation - basic fields only")
+//        @Test(description = "Simple subscription creation - basic fields only")
         public void createSimpleSubscription() throws IOException {
 
                 // Simple approach using fluent builders
@@ -59,13 +59,34 @@ public class SubscriptionApiTest extends BaseApiTest {
                                 .extract()
                                 .response();
 
-                Subscription subscription = Subscription(response);
+                Subscription subscription = apiHelper.Subscription(response);
 
 //                assertNotNull(subscription);
 //                assertNotNull(subscription.getId());
                 System.out.println("Created Subscription ID: " + subscription.getId());
                 String expectedJsonPath = "api/customers/SubscriptionApiTest_createSimpleSubscription.json";
-                JsonComparator.compareJsonWithClasspathResource(response, expectedJsonPath, ignoreFields);
+                JsonComparator.compareJsonWithClasspathResource(response, expectedJsonPath, apiHelper.ignoreFields);
+        }
+
+        @Test(description = "Simple subscription creation - basic fields only")
+        public void createSimpleSubscription2() throws IOException {
+
+                // Simple approach using fluent builders
+                CreateSubscriptionApiRequest request = new CreateSubscriptionApiRequest();
+                request.setAutoCollection("off");
+
+                // Add subscription items
+                request.addSubscriptionItem(new SubscriptionItem().setItemPriceId("ffPlan1-INR-Monthly"));
+                request.addSubscriptionItem(new SubscriptionItem().setItemPriceId("tieAddon1-INR-Monthly").setQuantity(344));
+
+                Response response = apiHelper.createSubscriptionViaApi(customerId, request);
+                Subscription subscription = apiHelper.Subscription(response);
+
+//                assertNotNull(subscription);
+//                assertNotNull(subscription.getId());
+                System.out.println("Created Subscription ID: " + subscription.getId());
+                String expectedJsonPath = "api/customers/SubscriptionApiTest_createSimpleSubscription.json";
+                JsonComparator.compareJsonWithClasspathResource(response, expectedJsonPath, apiHelper.ignoreFields);
         }
 
 }
