@@ -1,7 +1,6 @@
 package org.example.tests.ui.Customer;
 
-import org.example.builders.CustomerBuilder;
-import org.example.models.Customers;
+import org.example.models.ui.Customers;
 import org.example.tests.BaseTest;
 import org.testng.annotations.Test;
 
@@ -57,12 +56,11 @@ public class CustomerTest2 extends BaseTest {
 
     @Test
     public void createCustomer2_1() throws Exception {
-        Customers customer = new CustomerBuilder()
+        Customers customer = new Customers()
                 .setFirstName("fn")
                 .setEmail("email@mail.in")
                 .setCompany("Chargebee")
-                .setBillingCountry("United States")
-                .build();
+                .setBillingCountry("United States");
         homePage.navigateToCustomersIndexPage();
 //        customersIndexPage.waitUntilCustomersPageLoad();
 //        customersIndexPage.clickCreateCustomerButton();
@@ -73,12 +71,11 @@ public class CustomerTest2 extends BaseTest {
     }
     @Test
     public void createCustomer1_1() throws Exception {
-        Customers customer = new CustomerBuilder()
+        Customers customer = new Customers()
                 .setFirstName("fn")
                 .setEmail("email@mail.in")
                 .setCompany("Chargebee")
-                .setBillingCountry("United States")
-                .build();
+                .setBillingCountry("United States");
         homePage.navigateToCustomersIndexPage();
 //        customersIndexPage.waitUntilCustomersPageLoad();
 //        customersIndexPage.clickCreateCustomerButton();
@@ -89,12 +86,11 @@ public class CustomerTest2 extends BaseTest {
     }
     @Test
     public void createCustomer3_1() throws Exception {
-        Customers customer = new CustomerBuilder()
+        Customers customer = new Customers()
                 .setFirstName("fn")
                 .setEmail("email@mail.in")
                 .setCompany("Chargebee")
-                .setBillingCountry("United States")
-                .build();
+                .setBillingCountry("United States");
         homePage.navigateToCustomersIndexPage();
 //        customersIndexPage.waitUntilCustomersPageLoad();
 //        customersIndexPage.clickCreateCustomerButton();

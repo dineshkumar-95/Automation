@@ -14,14 +14,13 @@ import org.testng.annotations.Parameters;
 
 public abstract class BaseTest {
 
-    public LoginPage loginPage;
-    public HomePage homePage;
-    public CustomerCreatePage customerCreatePage;
-    public CustomersIndexPage customersIndexPage;
-    public CustomerDetailsPage customerDetailsPage;
-    public ApiClient apiClient;
-    public CustomerApi customerApi;
-    public SubscriptionApi subscriptionApi;
+    protected LoginPage loginPage;
+    protected HomePage homePage;
+    protected CustomerCreatePage customerCreatePage;
+    protected CustomersIndexPage customersIndexPage;
+    protected CustomerDetailsPage customerDetailsPage;
+    protected CustomerApi customerApi;
+    protected SubscriptionApi subscriptionApi;
 
     public abstract void setupTestClass() throws Exception;
 
@@ -33,9 +32,9 @@ public abstract class BaseTest {
             @Optional String browserVersion,
             @Optional String apiBaseUrl,
             @Optional String apiKey,
-            @Optional("UI") String Test_Type
+            @Optional("UI") String testType
     ) throws Exception {
-        if (Test_Type.equalsIgnoreCase("api")) {
+        if (testType.equalsIgnoreCase("api")) {
             setAPIClients(apiBaseUrl, apiKey);
             setupTestClass();
         }
@@ -63,7 +62,7 @@ public abstract class BaseTest {
     }
 
     private void setAPIClients(String apiBaseUrl, String apiKey) {
-        apiClient = new ApiClient(apiBaseUrl, apiKey);
+        ApiClient apiClient = new ApiClient(apiBaseUrl, apiKey);
         customerApi = new CustomerApi(apiClient);
         subscriptionApi = new SubscriptionApi(apiClient);
     }

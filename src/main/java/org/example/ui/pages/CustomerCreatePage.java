@@ -1,7 +1,7 @@
 package org.example.ui.pages;
 
 import org.example.ui.BasePage;
-import org.example.models.Customers;
+import org.example.models.ui.Customers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

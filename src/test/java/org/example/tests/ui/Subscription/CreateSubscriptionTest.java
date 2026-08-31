@@ -7,7 +7,7 @@ import org.example.models.api.response.Customer;
 import org.testng.annotations.Test;
 import org.example.tests.BaseTest;
 
-public class CreateSubscriptionTesting extends BaseTest {
+public class CreateSubscriptionTest extends BaseTest {
     
     protected String testCustomerId;
     protected String testCustomerEmail;

@@ -13,7 +13,7 @@
         <parameter name="browserName" value="firefox"/>
         <classes>
 <!--            <class name="Test.Customer.CustomerTesting"/>-->
-            <class name="org.example.tests.ui.Subscription.CreateSubscriptionTesting"/>
+            <class name="org.example.tests.ui.Subscription.CreateSubscriptionTest"/>
         </classes>
     </test>
 

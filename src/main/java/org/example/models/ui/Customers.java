@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.models.ui;
 
 public class Customers {
 
@@ -29,121 +29,142 @@ public class Customers {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public Customers setCustomerId(String customerId) {
         this.customerId = customerId;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Customers setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
-    public void setFirstName(String firstName) {
+
+    public Customers setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
-    public void setLastName(String lastName) {
+    public Customers setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getCompany() {
         return company;
     }
-    public void setCompany(String company) {
+    public Customers setCompany(String company) {
         this.company = company;
+        return this;
     }
 
     public String getPhone() {
         return phone;
     }
-    public void setPhone(String phone) {
+    public Customers setPhone(String phone) {
         this.phone = phone;
+        return this;
     }
 
     public String getBillingCountry() {
         return billingCountry;
     }
-    public void setBillingCountry(String billingCountry) {
+    public Customers setBillingCountry(String billingCountry) {
         this.billingCountry = billingCountry;
+        return this;
     }
 
     public String getBillingFirstName() {
         return billingFirstName;
     }
-    public void setBillingFirstName(String billingFirstName) {
+    public Customers setBillingFirstName(String billingFirstName) {
         this.billingFirstName = billingFirstName;
+        return this;
     }
     public String getBillingLastName() {
         return billingLastName;
     }
-    public void setBillingLastName(String billingLastName) {
+    public Customers setBillingLastName(String billingLastName) {
         this.billingLastName = billingLastName;
+        return this;
     }
 
     public String getBillingCompany() {
         return billingCompany;
     }
-    public void setBillingCompany(String billingCompany) {
+    public Customers setBillingCompany(String billingCompany) {
         this.billingCompany = billingCompany;
+        return this;
     }
 
     public String getBillingEmail() {
         return billingEmail;
     }
-    public void setBillingEmail(String billingEmail) {
+    public Customers setBillingEmail(String billingEmail) {
         this.billingEmail = billingEmail;
+        return this;
     }
 
     public String getBillingPhone() {
         return billingPhone;
     }
-    public void setBillingPhone(String billingPhone) {
+    public Customers setBillingPhone(String billingPhone) {
         this.billingPhone = billingPhone;
+        return this;
     }
     public String getBillingLine1() {
         return billingLine1;
     }
-    public void setBillingLine1(String billingLine1) {
+    public Customers setBillingLine1(String billingLine1) {
         this.billingLine1 = billingLine1;
+        return this;
     }
     public String getBillingLine2() {
         return billingLine2;
     }
-    public void setBillingLine2(String billingLine2) {
+    public Customers setBillingLine2(String billingLine2) {
         this.billingLine2 = billingLine2;
+        return this;
     }
     public String getBillingLine3() {
         return billingLine3;
     }
-    public void setBillingLine3(String billingLine3) {
+    public Customers setBillingLine3(String billingLine3) {
         this.billingLine3 = billingLine3;
+        return this;
     }
     public String getBillingCity() {
         return billingCity;
     }
-    public void setBillingCity(String billingCity) {
+    public Customers setBillingCity(String billingCity) {
         this.billingCity = billingCity;
+        return this;
     }
     public String getBillingZip() {
         return billingZip;
     }
-    public void setBillingZip(String billingZip) {
+
+    public Customers setBillingZip(String billingZip) {
         this.billingZip = billingZip;
+        return this;
     }
     public String getBillingState() {
         return billingState;
     }
-    public void setBillingState(String billingState) {
+
+    public Customers setBillingState(String billingState) {
         this.billingState = billingState;
+        return this;
     }
 
 }

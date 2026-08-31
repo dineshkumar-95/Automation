@@ -1,11 +1,10 @@
 package org.example.tests.ui.Customer;
 
-import org.example.builders.CustomerBuilder;
-import org.example.models.Customers;
+import org.example.models.ui.Customers;
 import org.testng.annotations.Test;
 import org.example.tests.BaseTest;
 
-public class CustomerTesting extends BaseTest {
+public class CustomerTest01 extends BaseTest {
     @Override
     public void setupTestClass() throws Exception {
 
@@ -13,12 +12,11 @@ public class CustomerTesting extends BaseTest {
 
     @Test
     public void createCustomer1() throws Exception {
-        Customers customer = new CustomerBuilder()
+        Customers customer = new Customers()
                 .setFirstName("fn")
                 .setEmail("email@mail.in")
                 .setCompany("Chargebee")
-                .setBillingCountry("United States")
-                .build();
+                .setBillingCountry("United States");
         homePage.navigateToCustomersIndexPage();
         customersIndexPage.waitUntilCustomersPageLoad();
         customersIndexPage.clickCreateCustomerButton();
