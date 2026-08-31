@@ -1,17 +1,18 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="API Test Suite" parallel="classes" thread-count="2">
     <listeners>
-        <listener class-name="listeners.TestListener"/>
-        <listener class-name="listeners.AnnotationTransformer"/>
+        <listener class-name="org.example.listeners.TestListener"/>
+        <listener class-name="org.example.listeners.AnnotationTransformer"/>
     </listeners>
 
     <!-- API Tests - No browser required -->
     <test name="CustomerAPITests">
+        <parameter name="Test_Type" value="API"/>
         <parameter name="apiBaseUrl" value="https://dinesh-kumar-test.chargebee.com"/>
         <parameter name="apiKey" value="test_pHAGUMPPMQHSkTVvaO92TcBrAu8Ra3oF"/>
         <classes>
-<!--            <class name="api.tests.CustomerApiTest"/>-->
-            <class name="api.tests.SubscriptionApiTest"/>
+            <class name="org.example.tests.api.CustomerApiTest"/>
+            <class name="org.example.tests.api.SubscriptionApiTest"/>
         </classes>
     </test>
 </suite>
