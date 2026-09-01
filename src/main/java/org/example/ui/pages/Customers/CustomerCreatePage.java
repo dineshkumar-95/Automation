@@ -1,4 +1,4 @@
-package org.example.ui.pages;
+package org.example.ui.pages.Customers;
 
 import org.example.ui.BasePage;
 import org.example.models.ui.Customers;

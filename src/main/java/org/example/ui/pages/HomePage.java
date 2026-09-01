@@ -4,6 +4,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.example.ui.BasePage;
 import org.example.constants.Constants;
+import org.example.ui.pages.Customers.CustomersIndexPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
