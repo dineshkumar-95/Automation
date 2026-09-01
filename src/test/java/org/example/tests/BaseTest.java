@@ -22,7 +22,7 @@ public abstract class BaseTest {
     protected CustomerApi customerApi;
     protected SubscriptionApi subscriptionApi;
 
-    public abstract void setupTestClass() throws Exception;
+    public void setupTestClass() throws Exception{};
 
     @BeforeClass
     @Parameters({"browserName", "platformName", "browserVersion", "apiBaseUrl", "apiKey", "Test_Type"})
@@ -42,12 +42,12 @@ public abstract class BaseTest {
             DriverManager.init(browserName, platformName, browserVersion);
             setDrivers();
             setAPIClients(apiBaseUrl, apiKey);
-            login();
+//            login();
             setupTestClass();
         }
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void teardown() {
         DriverManager.quit();
     }

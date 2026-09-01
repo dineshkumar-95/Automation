@@ -4,6 +4,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.example.ui.BasePage;
 import org.example.constants.Constants;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,10 +22,11 @@ public class HomePage extends BasePage {
 
     @FindBy(xpath = "//div[@class='cv-dboard']")
     private WebElement dashboard;
+    By dashboard_by = By.xpath("//div[@class='cv-dboard']");
 
     public HomePage waitForHomePageLoad() {
         LOGGER.info("Waiting for page load to complete - Home Page");
-        waitForElementToDisplay(dashboard);
+        waitForElementToDisplay_fluent(dashboard_by);
         return this;
     }
     public HomePage verifyHomePageLoad() {

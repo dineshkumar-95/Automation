@@ -21,7 +21,5 @@ public final class ApiResponseUtils {
 
     public static Card card(Response response) {
         return response.jsonPath().getObject("card", Card.class);
-//        return response.as(Card.class);
-
     }
 }

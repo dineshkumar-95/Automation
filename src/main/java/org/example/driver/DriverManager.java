@@ -1,5 +1,6 @@
 package org.example.driver;
 
+import com.epam.healenium.SelfHealingDriver;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,11 +28,23 @@ public final class DriverManager {
         if (threadLocal.get() != null) {
             return;
         }
+
         if ((platformName != null && !platformName.trim().isEmpty()) || (browserVersion != null && !browserVersion.trim().isEmpty())){
             threadLocal.set(initLambdaTestDriver(browserName, platformName, browserVersion));
         } else {
             threadLocal.set(initLocalDriver(browserName));
         }
+
+        //********* healenium ********////
+//        WebDriver rawDriver;
+//        if ((platformName != null && !platformName.trim().isEmpty()) || (browserVersion != null && !browserVersion.trim().isEmpty())){
+//            rawDriver = initLambdaTestDriver(browserName, platformName, browserVersion);
+//        } else {
+//            rawDriver = initLocalDriver(browserName);
+//        }
+//        WebDriver selfHealingDriver = SelfHealingDriver.create(rawDriver);
+//        threadLocal.set(selfHealingDriver);
+
     }
 
     private static WebDriver initLambdaTestDriver(String browserName, String platformName, String browserVersion) throws Exception {
@@ -114,8 +127,11 @@ public final class DriverManager {
             return new ChromeDriver(options);
 
         } else if (browserName.equalsIgnoreCase("edge")) {
-
-            return new EdgeDriver();
+            EdgeOptions options = new EdgeOptions();
+            if (System.getenv("CI") != null) {
+                options.addArguments("--headless"); // Prevents crashes in GitHub Actions
+            }
+            return new EdgeDriver(options);
 
         } else if (browserName.equalsIgnoreCase("safari")) {
 

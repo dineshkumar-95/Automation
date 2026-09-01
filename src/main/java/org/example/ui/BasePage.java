@@ -78,7 +78,7 @@ public abstract class BasePage {
 
     protected void waitForElementToDisplay(WebElement element) {
 //        sleepWait(1000);
-        //LOGGER.info("Checking every 1 second until 30 seconds : " + element);
+        LOGGER.info("Checking every 1 second until 30 seconds : " + element);
         for (int i = 1; i <= HALF_MIN_SECS; i++) {
             try {
                 Thread.sleep(1000);
@@ -96,9 +96,10 @@ public abstract class BasePage {
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);
-//        fluentWait.until(driver -> element.isDisplayed());
-        fluentWait.until(driver -> findElement(by).isDisplayed());
-        fluentWait.until(ExpectedConditions.elementToBeClickable(by));
+        fluentWait.until(ExpectedConditions.visibilityOfElementLocated(by));
 
     }
+
+
+
 }
