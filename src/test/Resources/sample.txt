@@ -1,0 +1,12 @@
+
+
+cd work/healenium
+docker compose -f docker-compose-web.yaml up -d
+docker compose down -v
+docker ps -a
+docker ps
+docker logs -f healenium
+
+
+
+http://localhost:7878/healenium/report
