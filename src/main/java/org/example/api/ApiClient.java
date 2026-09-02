@@ -52,7 +52,7 @@ public class ApiClient {
                 .auth().basic(this.apiKey, "");
     }
 
-    public ResponseSpecification responseSpec() {
+    public ResponseSpecification getResponseSpec() {
         return responseSpec;
     }
 

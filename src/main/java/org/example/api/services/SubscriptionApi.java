@@ -23,7 +23,7 @@ public class SubscriptionApi {
 //                .post(ApiConstants.CREATE_CUSTOMERS_ENDPOINT)
                 .post(ApiConstants.SUBSCRIPTION_FOR_ITEMS_ENDPOINT.replace("{customerId}", customerId))
                 .then()
-                .spec(apiClient.responseSpec())
+                .spec(apiClient.getResponseSpec())
                 .statusCode(ApiConstants.STATUS_OK)
                 .extract()
                 .response();

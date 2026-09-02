@@ -26,7 +26,7 @@ public class CustomerApi {
                 .when()
                 .post(ApiConstants.CREATE_CUSTOMERS_ENDPOINT)
                 .then()
-                .spec(apiClient.responseSpec())
+                .spec(apiClient.getResponseSpec())
                 .statusCode(ApiConstants.STATUS_OK)
                 .extract()
                 .response();
@@ -37,7 +37,7 @@ public class CustomerApi {
                 .when()
                 .post(ApiConstants.UPDATE_CUSTOMERS_ENDPOINT.replace("{customerId}", customerId))
                 .then()
-                .spec(apiClient.responseSpec())
+                .spec(apiClient.getResponseSpec())
                 .statusCode(ApiConstants.STATUS_OK)
                 .extract()
                 .response();
