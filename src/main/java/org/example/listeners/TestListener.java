@@ -16,7 +16,7 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TestListener implements ITestListener {
+public class TestListener implements ITestListener, IConfigurationListener {
 
     @Override
     public void onFinish(ITestContext context) {
@@ -52,6 +52,21 @@ public class TestListener implements ITestListener {
         ExtentTestManager.endTest();
         ExtentTestManager.flushReport();
     }
+
+    @Override
+    public void onConfigurationFailure(ITestResult result) {
+        String testName = result.getTestClass().getClass().getName()+"."+result.getMethod().getMethodName();
+        // Create an Extent test if one doesn't already exist
+        ExtentTest test = ExtentTestManager.getTest();
+        if (test == null) {
+            ExtentTestManager.startTest(testName);
+            test = ExtentTestManager.getTest();
+        }
+        logWithScreenshotBase64(test, Status.FAIL, result);
+        ExtentTestManager.endTest();
+        ExtentTestManager.flushReport();
+    }
+
 
     private void logWithScreenshotBase64(ExtentTest test, Status status, ITestResult result){
         if (result.getThrowable() != null) {
