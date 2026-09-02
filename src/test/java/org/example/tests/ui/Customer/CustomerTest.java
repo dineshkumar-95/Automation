@@ -1,6 +1,6 @@
 package org.example.tests.ui.Customer;
 
-import org.example.models.ui.Customers;
+import org.example.ui.models.Customers;
 import org.example.tests.BaseTest;
 import org.testng.annotations.Test;
 

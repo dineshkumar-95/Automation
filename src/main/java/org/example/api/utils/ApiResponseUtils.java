@@ -1,10 +1,10 @@
 package org.example.api.utils;
 
 import io.restassured.response.Response;
-import org.example.models.api.response.Card;
-import org.example.models.api.response.Customer;
-import org.example.models.api.response.Invoice;
-import org.example.models.api.response.Subscription;
+import org.example.api.models.response.Card;
+import org.example.api.models.response.Customer;
+import org.example.api.models.response.Invoice;
+import org.example.api.models.response.Subscription;
 
 public final class ApiResponseUtils {
     public static Subscription subscription(Response response) {

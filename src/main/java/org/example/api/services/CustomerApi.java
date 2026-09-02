@@ -3,7 +3,7 @@ package org.example.api.services;
 import org.example.api.ApiClient;
 import io.restassured.response.Response;
 import org.example.constants.ApiConstants;
-import org.example.models.api.request.CreateCustomerApiRequest;
+import org.example.api.models.request.CreateCustomerApiRequest;
 
 public class CustomerApi {
 

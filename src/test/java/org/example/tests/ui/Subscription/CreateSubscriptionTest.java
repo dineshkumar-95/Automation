@@ -2,8 +2,8 @@ package org.example.tests.ui.Subscription;
 
 import org.example.api.utils.ApiResponseUtils;
 import io.restassured.response.Response;
-import org.example.models.api.request.CreateCustomerApiRequest;
-import org.example.models.api.response.Customer;
+import org.example.api.models.request.CreateCustomerApiRequest;
+import org.example.api.models.response.Customer;
 import org.testng.annotations.Test;
 import org.example.tests.BaseTest;
 
