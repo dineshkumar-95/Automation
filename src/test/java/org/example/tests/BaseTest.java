@@ -25,6 +25,9 @@ public abstract class BaseTest {
     protected CustomerApi customerApi;
     protected SubscriptionApi subscriptionApi;
 
+    /** True only when a browser was initialised for this test class. */
+    private boolean isUITest = false;
+
     public void setupTestClass() throws Exception{};
 
     @BeforeClass
@@ -42,6 +45,7 @@ public abstract class BaseTest {
             setupTestClass();
         }
         else {
+            isUITest = true;
             DriverManager.init(browserName, platformName, browserVersion);
             setDrivers();
             setAPIClients(apiBaseUrl, apiKey);
@@ -52,7 +56,9 @@ public abstract class BaseTest {
 
     @AfterClass(alwaysRun = true)
     public void teardown() {
-        DriverManager.quit();
+        if (isUITest) {
+            DriverManager.quit();
+        }
     }
 
     private void setDrivers() {
