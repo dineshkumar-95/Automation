@@ -1,4 +1,4 @@
-package org.example.models.ui;
+package org.example.ui.models;
 
 public class Customers {
 

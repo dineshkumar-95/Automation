@@ -1,4 +1,4 @@
-package org.example.models.api.request;
+package org.example.api.models.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
