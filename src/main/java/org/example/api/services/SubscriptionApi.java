@@ -2,6 +2,7 @@ package org.example.api.services;
 
 import org.example.api.ApiClient;
 import io.restassured.response.Response;
+import org.example.api.mapper.CreateSubscriptionApiMapper;
 import org.example.constants.ApiConstants;
 import org.example.api.models.request.CreateSubscriptionApiRequest;
 
@@ -17,7 +18,7 @@ public class SubscriptionApi {
      */
     public Response createSubscriptionApi(String customerId, CreateSubscriptionApiRequest createSubscriptionApiRequest) {
         return apiClient.getAuthenticatedRequest()
-                .body(createSubscriptionApiRequest.toFormUrlEncoded())
+                .body(CreateSubscriptionApiMapper.toFormUrlEncoded(createSubscriptionApiRequest))
                 .when()
 //                .post(ApiConstants.CREATE_CUSTOMERS_ENDPOINT)
                 .post(ApiConstants.SUBSCRIPTION_FOR_ITEMS_ENDPOINT.replace("{customerId}", customerId))

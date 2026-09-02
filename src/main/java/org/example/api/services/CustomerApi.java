@@ -2,7 +2,8 @@ package org.example.api.services;
 
 import org.example.api.ApiClient;
 import io.restassured.response.Response;
-import org.example.api.mapper.UpdateCustomerRequestMapper;
+import org.example.api.mapper.CreateCustomerApiMapper;
+import org.example.api.mapper.UpdateCustomerApiMapper;
 import org.example.api.models.request.UpdateCustomerApiRequest;
 import org.example.constants.ApiConstants;
 import org.example.api.models.request.CreateCustomerApiRequest;
@@ -21,7 +22,7 @@ public class CustomerApi {
      */
     public Response createCustomerApi(CreateCustomerApiRequest Request) {
         return apiClient.getAuthenticatedRequest()
-                .body(Request.toFormUrlEncoded())
+                .body(CreateCustomerApiMapper.toFormUrlEncoded(Request))
                 .when()
                 .post(ApiConstants.CREATE_CUSTOMERS_ENDPOINT)
                 .then()
@@ -32,7 +33,7 @@ public class CustomerApi {
     }
     public Response updateCustomerApi(String customerId, UpdateCustomerApiRequest Request) {
         return apiClient.getAuthenticatedRequest()
-                .body(UpdateCustomerRequestMapper.toFormUrlEncoded(Request))
+                .body(UpdateCustomerApiMapper.toFormUrlEncoded(Request))
                 .when()
                 .post(ApiConstants.UPDATE_CUSTOMERS_ENDPOINT.replace("{customerId}", customerId))
                 .then()

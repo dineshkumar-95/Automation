@@ -1,11 +1,11 @@
 package org.example.api.mapper;
 
-import org.example.api.models.common.TaxProvidersField;
+import org.example.api.mapper.common.ChargebeeFormMapper;
 import org.example.api.models.request.UpdateCustomerApiRequest;
 import org.example.api.utils.FormUrlEncoder;
 
-public class UpdateCustomerRequestMapper {
-    private UpdateCustomerRequestMapper() {
+public class UpdateCustomerApiMapper {
+    private UpdateCustomerApiMapper() {
     }
     public static String toFormUrlEncoded(UpdateCustomerApiRequest request) {
 
@@ -38,15 +38,7 @@ public class UpdateCustomerRequestMapper {
         FormUrlEncoder.addField(formParams, "consolidated_invoicing", request.getConsolidatedInvoicing());
 
         // ========== TAX PROVIDERS FIELDS ==========
-
-        if (request.getTaxProvidersFields() != null) {
-            for (int i = 0; i < request.getTaxProvidersFields().size(); i++) {
-                TaxProvidersField field = request.getTaxProvidersFields().get(i);
-                FormUrlEncoder.addIndexedField(formParams, "tax_providers_fields[provider_name]", i, field.getProviderName());
-                FormUrlEncoder.addIndexedField(formParams, "tax_providers_fields[field_id]", i, field.getFieldId());
-                FormUrlEncoder.addIndexedField(formParams, "tax_providers_fields[field_value]", i, field.getFieldValue());
-            }
-        }
+        ChargebeeFormMapper.addTaxProvidersFields(formParams,request.getTaxProvidersFields());
 
         return formParams.toString();
     }
