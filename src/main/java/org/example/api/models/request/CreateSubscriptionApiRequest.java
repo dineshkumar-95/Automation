@@ -136,24 +136,12 @@ public class CreateSubscriptionApiRequest {
         return this;
     }
 
-    public CreateSubscriptionApiRequest addSubscriptionItem(String itemPriceId, Integer quantity) {
-        return addSubscriptionItem(new SubscriptionItem().setItemPriceId(itemPriceId).setQuantity(quantity));
-    }
-
-    public CreateSubscriptionApiRequest addSubscriptionItem(String itemPriceId) {
-        return addSubscriptionItem(itemPriceId, 1);
-    }
-
     public CreateSubscriptionApiRequest addDiscount(Discount discount) {
         if (this.discounts == null) {
             this.discounts = new ArrayList<>();
         }
         this.discounts.add(discount);
         return this;
-    }
-
-    public CreateSubscriptionApiRequest addDiscount(String discountId, Integer quantity) {
-        return addDiscount(new Discount().setDiscountId(discountId).setQuantity(quantity));
     }
 
     public CreateSubscriptionApiRequest addItemTier(ItemTier itemTier) {
@@ -620,10 +608,8 @@ public class CreateSubscriptionApiRequest {
         }
 
         if (billingOverride != null) {
-            addFormField(formParams, "billing_override[max_excess_payment_usage]",
-                    billingOverride.getMaxExcessPaymentUsage());
-            addFormField(formParams, "billing_override[max_refundable_credits_usage]",
-                    billingOverride.getMaxRefundableCreditsUsage());
+            addFormField(formParams, "billing_override[max_excess_payment_usage]", billingOverride.getMaxExcessPaymentUsage());
+            addFormField(formParams, "billing_override[max_refundable_credits_usage]", billingOverride.getMaxRefundableCreditsUsage());
         }
 
         return formParams.toString();

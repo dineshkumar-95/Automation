@@ -7,6 +7,7 @@ public class ApiConstants {
 
     // API Endpoints
     public static final String CREATE_CUSTOMERS_ENDPOINT = "/api/v2/customers";
+    public static final String UPDATE_CUSTOMERS_ENDPOINT = "/api/v2/customers/{customerId}";
     public static final String CUSTOMERS_ENDPOINT = "/api/v2/customers";
     public static final String LIST_CUSTOMERS_ENDPOINT = "/api/v2/customers";
     public static final String GET_CUSTOMERS_ENDPOINT = "/api/v2/customers/";
