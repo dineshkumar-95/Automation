@@ -47,6 +47,7 @@ public class SubscriptionApiTest extends BaseTest {
 
                 Response response = subscriptionApi.createSubscriptionApi(customerId, request);
                 Subscription subscription = ApiResponseUtils.subscription(response);
+                System.out.println("Addon Name - " + subscription.getSubscriptionItems().get(1).getItemPriceId());
 
 //                assertNotNull(subscription);
 //                assertNotNull(subscription.getId());

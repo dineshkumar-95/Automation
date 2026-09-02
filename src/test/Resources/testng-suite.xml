@@ -14,7 +14,7 @@
         <classes>
 <!--            <class name="Test.Customer.CustomerTesting"/>-->
             <class name="org.example.tests.ui.Subscription.CreateSubscriptionTest"/>
-<!--            <class name="org.example.tests.ui.demo.HealeniumDemoTest"/>-->
+            <class name="org.example.tests.ui.demo.HealeniumDemoTest"/>
         </classes>
     </test>
 

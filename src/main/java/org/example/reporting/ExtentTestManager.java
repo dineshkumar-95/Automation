@@ -8,8 +8,8 @@ public final class ExtentTestManager {
     private static final ExtentReports extent = ExtentManager.getReporter();
     private static final ThreadLocal<ExtentTest> threadLocal = new ThreadLocal<>();
 
-    public static void startTest(String testName, String description) {
-        ExtentTest test = extent.createTest(testName, description);
+    public static void startTest(String testName) {
+        ExtentTest test = extent.createTest(testName);
         threadLocal.set(test);
     }
 

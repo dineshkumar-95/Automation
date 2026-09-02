@@ -25,65 +25,35 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        String description = result.getMethod().getDescription();
-        if (description == null) {
-            description = result.getTestClass().getName();
-        }
-        ExtentTestManager.startTest(result.getMethod().getMethodName(), description);
+        String testName = result.getTestClass().getClass().getName()+"."+result.getMethod().getMethodName();
+        ExtentTestManager.startTest(testName);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         ExtentTest test = ExtentTestManager.getTest();
-        if (test != null) {
-            test.log(Status.PASS, "Test passed");
-        }
+        test.log(Status.PASS, "Test passed");
         ExtentTestManager.endTest();
+        ExtentTestManager.flushReport();
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         ExtentTest test = ExtentTestManager.getTest();
-        if (test != null) {
-            logWithScreenshot(test, Status.FAIL, result);
-        }
+        logWithScreenshotBase64(test, Status.FAIL, result);
         ExtentTestManager.endTest();
+        ExtentTestManager.flushReport();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         ExtentTest test = ExtentTestManager.getTest();
-        if (test != null) {
-            logWithScreenshot(test, Status.SKIP, result);
-        }
+        logWithScreenshotBase64(test, Status.SKIP, result);
         ExtentTestManager.endTest();
+        ExtentTestManager.flushReport();
     }
 
-    private void logWithScreenshot(ExtentTest test, Status status, ITestResult result) {
-        WebDriver driver = DriverManager.getDriver();
-        if (driver == null) {
-            logStatus(test, status, result);
-            return;
-        }
-
-        try {
-            String base64Screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-            saveScreenshotToFile(result, base64Screenshot);
-
-            if (result.getThrowable() != null) {
-                test.log(status, result.getThrowable(),
-                        MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
-            } else {
-                test.log(status, status == Status.SKIP ? "Test skipped" : "Test failed",
-                        MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());
-            }
-        } catch (Exception e) {
-            logStatus(test, status, result);
-            test.warning("Could not attach screenshot: " + e.getMessage());
-        }
-    }
-
-    private void logStatus(ExtentTest test, Status status, ITestResult result) {
+    private void logWithScreenshotBase64(ExtentTest test, Status status, ITestResult result){
         if (result.getThrowable() != null) {
             test.log(status, result.getThrowable());
         } else if (status == Status.SKIP) {
@@ -91,14 +61,12 @@ public class TestListener implements ITestListener {
         } else {
             test.log(status, "Test failed");
         }
-    }
+        
+        WebDriver localDriver = DriverManager.getDriver();
+        if (localDriver != null) {
+            String base64 = ((TakesScreenshot) localDriver).getScreenshotAs(OutputType.BASE64);
+            test.addScreenCaptureFromBase64String(base64);
+        }
 
-    private void saveScreenshotToFile(ITestResult result, String base64Screenshot) throws IOException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_hhmmss");
-        String fileName = result.getName() + "_" + dateFormat.format(new Date()) + ".png";
-        File destination = new File(System.getProperty("user.dir") + "/test-output/screenshots/" + fileName);
-        destination.getParentFile().mkdirs();
-        byte[] bytes = java.util.Base64.getDecoder().decode(base64Screenshot);
-        Files.write(destination.toPath(), bytes);
     }
 }
