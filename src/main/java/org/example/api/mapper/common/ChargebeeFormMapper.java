@@ -172,5 +172,15 @@ public class ChargebeeFormMapper {
         }
     }
 
+    public static void addContact(StringBuilder formParams, Contact contact) {
+        if (contact != null) {
+            addField(formParams,"contact[id]",contact.getId());
+            addField(formParams,"contact[first_name]",contact.getFirstName());
+            addField(formParams,"contact[last_name]",contact.getLastName());
+            addField(formParams, "contact[email]",contact.getEmail());
+
+        }
+    }
+
 
 }
