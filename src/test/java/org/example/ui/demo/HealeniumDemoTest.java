@@ -1,7 +1,7 @@
-package org.example.tests.ui.demo;
+package org.example.ui.demo;
 
 import org.example.driver.DriverManager;
-import org.example.tests.BaseTest;
+import org.example.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 

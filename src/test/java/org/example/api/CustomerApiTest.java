@@ -1,4 +1,4 @@
-package org.example.tests.api;
+package org.example.api;
 
 import org.example.api.utils.ApiResponseUtils;
 import org.example.api.utils.ApiValidationUtils;
@@ -8,7 +8,7 @@ import org.example.api.models.response.Customer;
 import org.example.api.models.response.Card;
 import org.example.api.utils.JsonComparator;
 import org.testng.annotations.Test;
-import org.example.tests.BaseTest;
+import org.example.BaseTest;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.anyOf;

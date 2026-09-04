@@ -1,10 +1,10 @@
-package org.example.tests.ui.Customer;
+package org.example.ui.Customer;
 
 import org.example.ui.models.Customers;
-import org.example.tests.BaseTest;
+import org.example.BaseTest;
 import org.testng.annotations.Test;
 
-public class CustomerTest2 extends BaseTest {
+public class CustomerTest extends BaseTest {
     @Override
     public void setupTestClass() throws Exception {
 
@@ -54,49 +54,52 @@ public class CustomerTest2 extends BaseTest {
 //        Thread.sleep(10000);
 //    }
 
+//    @Test
+//    public void createCustomer2() throws Exception {
+//        Customers customer = new CustomerBuilder()
+//                .setFirstName("fn")
+//                .setEmail("email@mail.in")
+//                .setCompany("Chargebee")
+//                .setBillingCountry("United States")
+//                .build();
+//        homePage.navigateToCustomersIndexPage();
+////        customersIndexPage.waitUntilCustomersPageLoad();
+////        customersIndexPage.clickCreateCustomerButton();
+////        customerCreatePage.waitUntilCustomerCreatePageLoad();
+////        customerCreatePage.createCustomer(customer);
+//        Thread.sleep(2000);
+//        throw new Exception();
+//    }
     @Test
-    public void createCustomer2_1() throws Exception {
+    public void createCustomer1() throws Exception {
         Customers customer = new Customers()
                 .setFirstName("fn")
                 .setEmail("email@mail.in")
                 .setCompany("Chargebee")
                 .setBillingCountry("United States");
         homePage.navigateToCustomersIndexPage();
-//        customersIndexPage.waitUntilCustomersPageLoad();
-//        customersIndexPage.clickCreateCustomerButton();
-//        customerCreatePage.waitUntilCustomerCreatePageLoad();
-//        customerCreatePage.createCustomer(customer);
-        Thread.sleep(2000);
+        customersIndexPage.waitUntilCustomersPageLoad();
+        customersIndexPage.clickCreateCustomerButton();
+        customerCreatePage.waitUntilCustomerCreatePageLoad();
+        customerCreatePage.createCustomer(customer);
+        customerDetailsPage.waitUntilCustomersPageLoad();
+//        Thread.sleep(1000);
 //        throw new Exception();
     }
-    @Test
-    public void createCustomer1_1() throws Exception {
-        Customers customer = new Customers()
-                .setFirstName("fn")
-                .setEmail("email@mail.in")
-                .setCompany("Chargebee")
-                .setBillingCountry("United States");
-        homePage.navigateToCustomersIndexPage();
-//        customersIndexPage.waitUntilCustomersPageLoad();
-//        customersIndexPage.clickCreateCustomerButton();
-//        customerCreatePage.waitUntilCustomerCreatePageLoad();
-//        customerCreatePage.createCustomer(customer);
-        Thread.sleep(1000);
-//        throw new Exception();
-    }
-    @Test
-    public void createCustomer3_1() throws Exception {
-        Customers customer = new Customers()
-                .setFirstName("fn")
-                .setEmail("email@mail.in")
-                .setCompany("Chargebee")
-                .setBillingCountry("United States");
-        homePage.navigateToCustomersIndexPage();
-//        customersIndexPage.waitUntilCustomersPageLoad();
-//        customersIndexPage.clickCreateCustomerButton();
-//        customerCreatePage.waitUntilCustomerCreatePageLoad();
-//        customerCreatePage.createCustomer(customer);
-        Thread.sleep(5000);
-//        throw new Exception();
-    }
+//    @Test
+//    public void createCustomer3() throws Exception {
+//        Customers customer = new CustomerBuilder()
+//                .setFirstName("fn")
+//                .setEmail("email@mail.in")
+//                .setCompany("Chargebee")
+//                .setBillingCountry("United States")
+//                .build();
+//        homePage.navigateToCustomersIndexPage();
+////        customersIndexPage.waitUntilCustomersPageLoad();
+////        customersIndexPage.clickCreateCustomerButton();
+////        customerCreatePage.waitUntilCustomerCreatePageLoad();
+////        customerCreatePage.createCustomer(customer);
+//        Thread.sleep(5000);
+////        throw new Exception();
+//    }
 }

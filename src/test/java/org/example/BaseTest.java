@@ -1,4 +1,4 @@
-package org.example.tests;
+package org.example;
 
 import org.example.api.ApiClient;
 import org.example.api.services.CustomerApi;

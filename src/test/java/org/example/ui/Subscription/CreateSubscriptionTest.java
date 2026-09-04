@@ -1,11 +1,11 @@
-package org.example.tests.ui.Subscription;
+package org.example.ui.Subscription;
 
 import org.example.api.utils.ApiResponseUtils;
 import io.restassured.response.Response;
 import org.example.api.models.request.CreateCustomerApiRequest;
 import org.example.api.models.response.Customer;
 import org.testng.annotations.Test;
-import org.example.tests.BaseTest;
+import org.example.BaseTest;
 
 public class CreateSubscriptionTest extends BaseTest {
     

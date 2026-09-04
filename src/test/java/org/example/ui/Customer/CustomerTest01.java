@@ -1,8 +1,8 @@
-package org.example.tests.ui.Customer;
+package org.example.ui.Customer;
 
 import org.example.ui.models.Customers;
 import org.testng.annotations.Test;
-import org.example.tests.BaseTest;
+import org.example.BaseTest;
 
 public class CustomerTest01 extends BaseTest {
     @Override

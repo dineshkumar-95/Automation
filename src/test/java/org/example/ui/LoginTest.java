@@ -1,6 +1,6 @@
-package org.example.tests.ui;
+package org.example.ui;
 
-import org.example.tests.BaseTest;
+import org.example.BaseTest;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {

@@ -13,8 +13,8 @@
         <parameter name="browserName" value="firefox"/>
         <classes>
 <!--            <class name="Test.Customer.CustomerTesting"/>-->
-            <class name="org.example.tests.ui.Subscription.CreateSubscriptionTest"/>
-            <class name="org.example.tests.ui.demo.HealeniumDemoTest"/>
+            <class name="org.example.ui.Subscription.CreateSubscriptionTest"/>
+            <class name="org.example.ui.demo.HealeniumDemoTest"/>
         </classes>
     </test>
 
@@ -24,8 +24,8 @@
 <!--        <parameter name="platformName" value="Windows 11"/>-->
 <!--        <parameter name="browserVersion" value="latest"/>-->
 <!--        <classes>-->
-<!--            <class name="org.example.tests.ui.Customer.CustomerTest"/>-->
-<!--&lt;!&ndash;            <class name="org.example.tests.ui.Customer.CustomerTest2"/>&ndash;&gt;-->
+<!--            <class name="org.example.ui.Customer.CustomerTest"/>-->
+<!--&lt;!&ndash;            <class name="org.example.ui.Customer.CustomerTest2"/>&ndash;&gt;-->
 <!--        </classes>-->
 <!--    </test>-->
 
