@@ -49,7 +49,7 @@ public abstract class BaseTest {
             DriverManager.init(browserName, platformName, browserVersion);
             setDrivers();
             setAPIClients(apiBaseUrl, apiKey);
-//            login();
+            login();
             setupTestClass();
         }
     }

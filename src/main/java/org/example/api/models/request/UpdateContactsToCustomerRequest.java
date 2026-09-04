@@ -5,32 +5,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.example.api.models.request.common.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.example.api.models.request.common.Contact;
 
 /**
  * Model class for Chargebee Create Subscription API Request.
  * Supports top-level fields, nested request objects, and list-based
  * subscription items, discounts, and item tiers.
  */
-@Getter
+
 @Setter
+@Getter
 @Accessors(chain = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class AddContactsToCustomer {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class UpdateContactsToCustomerRequest {
 
     @JsonProperty("contact")
     private Contact contact;
 
-//    public Contact getContact() {
-//        return contact;
-//    }
-//
-//    public AddContactsToCustomer setContact(Contact contact) {
-//        this.contact = contact;
-//        return this;
-//    }
 
 }

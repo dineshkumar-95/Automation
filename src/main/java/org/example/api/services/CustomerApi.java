@@ -1,9 +1,14 @@
 package org.example.api.services;
 
+import io.opentelemetry.api.trace.StatusCode;
 import org.example.api.ApiClient;
 import io.restassured.response.Response;
+import org.example.api.mapper.AddContactsToCustomerMapper;
 import org.example.api.mapper.CreateCustomerApiMapper;
+import org.example.api.mapper.UpdateContactsForCustomerMapper;
 import org.example.api.mapper.UpdateCustomerApiMapper;
+import org.example.api.models.request.AddContactsToCustomer;
+import org.example.api.models.request.UpdateContactsToCustomerRequest;
 import org.example.api.models.request.UpdateCustomerApiRequest;
 import org.example.constants.ApiConstants;
 import org.example.api.models.request.CreateCustomerApiRequest;
@@ -39,7 +44,29 @@ public class CustomerApi {
                 .then()
                 .spec(apiClient.getResponseSpec())
                 .statusCode(ApiConstants.STATUS_OK)
-                .extract()
-                .response();
+                .extract().response();
     }
+
+    public Response addContactToCustomer(String customerId, AddContactsToCustomer request){
+        return apiClient.getAuthenticatedRequest()
+                .body(AddContactsToCustomerMapper.toFormUrlEncoded(request))
+                .when()
+                .post(ApiConstants.ADD_CONTACTS_TO_CUSTOMER_ENDPOINT.replace("{customerId}",customerId))
+                .then()
+                .spec(apiClient.getResponseSpec())
+                .statusCode(ApiConstants.STATUS_OK)
+                .extract().response();
+    }
+
+    public Response updateContactForCustomer(String customerId, UpdateContactsToCustomerRequest request){
+        return apiClient.getAuthenticatedRequest()
+                .body(UpdateContactsForCustomerMapper.toFormUrlEncoded(request))
+                .when()
+                .post(ApiConstants.UPDATE_CONTACTS_FOR_CUSTOMER_ENDPOINT.replace("{customerId}",customerId))
+                .then()
+                .spec(apiClient.getResponseSpec())
+                .statusCode(ApiConstants.STATUS_OK)
+                .extract().response();
+    }
+
 }

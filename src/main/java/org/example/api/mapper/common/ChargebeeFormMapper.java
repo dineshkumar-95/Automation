@@ -178,7 +178,11 @@ public class ChargebeeFormMapper {
             addField(formParams,"contact[first_name]",contact.getFirstName());
             addField(formParams,"contact[last_name]",contact.getLastName());
             addField(formParams, "contact[email]",contact.getEmail());
-
+            addField(formParams, "contact[phone]", contact.getPhone());
+            addField(formParams, "contact[label]", contact.getLabel());
+            addField(formParams, "contact[enabled]", contact.getEnabled());
+            addField(formParams, "contact[send_billing_email]",contact.getSendBillingEmail());
+            addField(formParams, "contact[send_account_email]",contact.getSendAccountEmail());
         }
     }
 

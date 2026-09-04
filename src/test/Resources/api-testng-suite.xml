@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="API Test Suite" parallel="classes" thread-count="3">
+<suite name="API Test Suite" parallel="classes" thread-count="4">
     <listeners>
         <listener class-name="org.example.listeners.TestListener"/>
         <listener class-name="org.example.listeners.AnnotationTransformer"/>
@@ -14,6 +14,7 @@
             <class name="org.example.api.CustomerApiTest"/>
             <class name="org.example.api.SubscriptionApiTest"/>
             <class name="org.example.api.UpdateCustomerApiTest"/>
+            <class name="org.example.api.AddContactsToCustomerApiTest"/>
         </classes>
     </test>
 </suite>
