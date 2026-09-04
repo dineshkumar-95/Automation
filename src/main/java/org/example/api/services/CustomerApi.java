@@ -1,14 +1,13 @@
 package org.example.api.services;
 
-import io.opentelemetry.api.trace.StatusCode;
 import org.example.api.ApiClient;
 import io.restassured.response.Response;
 import org.example.api.mapper.AddContactsToCustomerMapper;
 import org.example.api.mapper.CreateCustomerApiMapper;
 import org.example.api.mapper.UpdateContactsForCustomerMapper;
 import org.example.api.mapper.UpdateCustomerApiMapper;
-import org.example.api.models.request.AddContactsToCustomer;
-import org.example.api.models.request.UpdateContactsToCustomerRequest;
+import org.example.api.models.request.AddContactsToCustomerRequest;
+import org.example.api.models.request.UpdateContactsForCustomerRequest;
 import org.example.api.models.request.UpdateCustomerApiRequest;
 import org.example.constants.ApiConstants;
 import org.example.api.models.request.CreateCustomerApiRequest;
@@ -47,7 +46,7 @@ public class CustomerApi {
                 .extract().response();
     }
 
-    public Response addContactToCustomer(String customerId, AddContactsToCustomer request){
+    public Response addContactToCustomer(String customerId, AddContactsToCustomerRequest request){
         return apiClient.getAuthenticatedRequest()
                 .body(AddContactsToCustomerMapper.toFormUrlEncoded(request))
                 .when()
@@ -58,7 +57,7 @@ public class CustomerApi {
                 .extract().response();
     }
 
-    public Response updateContactForCustomer(String customerId, UpdateContactsToCustomerRequest request){
+    public Response updateContactForCustomer(String customerId, UpdateContactsForCustomerRequest request){
         return apiClient.getAuthenticatedRequest()
                 .body(UpdateContactsForCustomerMapper.toFormUrlEncoded(request))
                 .when()

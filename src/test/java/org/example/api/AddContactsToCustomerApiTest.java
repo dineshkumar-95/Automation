@@ -2,11 +2,10 @@ package org.example.api;
 
 import io.restassured.response.Response;
 import org.example.BaseTest;
-import org.example.api.models.request.AddContactsToCustomer;
+import org.example.api.models.request.AddContactsToCustomerRequest;
 import org.example.api.models.request.CreateCustomerApiRequest;
-import org.example.api.models.request.UpdateContactsToCustomerRequest;
+import org.example.api.models.request.UpdateContactsForCustomerRequest;
 import org.example.api.models.request.common.Contact;
-import org.example.api.models.response.Customer;
 import org.example.api.utils.ApiResponseUtils;
 import org.testng.annotations.Test;
 
@@ -25,7 +24,7 @@ public class AddContactsToCustomerApiTest extends BaseTest {
 
 //    @Test
     public void addContactsToCustomer(){
-        AddContactsToCustomer request = new AddContactsToCustomer()
+        AddContactsToCustomerRequest request = new AddContactsToCustomerRequest()
                 .setContact(new Contact()
                         .setEmail("Contact_1_"+System.currentTimeMillis()+"@mailinator.com")
                         .setFirstName("Contact_1")
@@ -37,7 +36,7 @@ public class AddContactsToCustomerApiTest extends BaseTest {
 
     @Test
     public void updateContactsToCustomer(){
-        AddContactsToCustomer request = new AddContactsToCustomer()
+        AddContactsToCustomerRequest request = new AddContactsToCustomerRequest()
                 .setContact(new Contact()
                         .setEmail("Contact_1_"+System.currentTimeMillis()+"@mailinator.com")
                         .setFirstName("Contact_1")
@@ -46,7 +45,7 @@ public class AddContactsToCustomerApiTest extends BaseTest {
 
         Response response = customerApi.addContactToCustomer(customerId,request);
 
-        UpdateContactsToCustomerRequest updateRequest = new UpdateContactsToCustomerRequest()
+        UpdateContactsForCustomerRequest updateRequest = new UpdateContactsForCustomerRequest()
                 .setContact(new Contact()
                         .setFirstName("update_contact")
                         .setId("3"));
