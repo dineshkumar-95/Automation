@@ -2,7 +2,8 @@ package org.example.api.models.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.example.api.models.common.*;
+import org.example.api.models.request.common.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

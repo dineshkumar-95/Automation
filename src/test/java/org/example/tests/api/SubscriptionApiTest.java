@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 import org.example.api.models.request.CreateCustomerApiRequest;
 import org.example.api.models.request.CreateSubscriptionApiRequest;
 import org.example.api.models.response.Subscription;
-import org.example.api.models.common.SubscriptionItem;
+import org.example.api.models.request.common.SubscriptionItem;
 import org.example.api.utils.JsonComparator;
 import org.testng.annotations.Test;
 import org.example.tests.BaseTest;
