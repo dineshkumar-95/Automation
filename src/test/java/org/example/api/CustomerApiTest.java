@@ -34,14 +34,15 @@ public class CustomerApiTest extends BaseTest {
                 .setCompany("Test Company");
 
         Response response = customerApi.createCustomerApi(customerRequest);
+        
+        // Use new generic envelope pattern or backwards compatibility methods
         Customer customer = ApiResponseUtils.customer(response);
-//        String customerId = customer.getId();
+        Card card = ApiResponseUtils.card(response);
 
         System.out.println("Customer ID: " + customer.getId());
         System.out.println("Customer Email: " + customer.getEmail());
 
         // Access card details (if present)
-        Card card = ApiResponseUtils.card(response);
         if (card != null) {
             System.out.println("Card ID: " + card.getLast4());
             System.out.println("Card Gateway: " + card.getGateway());
