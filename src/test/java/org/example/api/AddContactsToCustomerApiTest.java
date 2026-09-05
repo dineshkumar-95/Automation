@@ -7,9 +7,14 @@ import org.example.api.models.request.CreateCustomerApiRequest;
 import org.example.api.models.request.UpdateContactsForCustomerRequest;
 import org.example.api.models.request.common.Contact;
 import org.example.api.models.response.Customer;
+import org.example.api.models.response.Customers;
 import org.example.api.utils.ApiResponseUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
+
+import static org.example.api.utils.ApiResponseUtils.customers;
 
 public class AddContactsToCustomerApiTest extends BaseTest {
 
@@ -57,6 +62,7 @@ public class AddContactsToCustomerApiTest extends BaseTest {
                 );
         Response response1 = customerApi.updateContactForCustomer(customerId,updateRequest);
          customer = ApiResponseUtils.customer(response1);
+        Customers cus = ApiResponseUtils.customers(response1);
          ContactId  = customer.getContacts().get(0).getId();
 
 

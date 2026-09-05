@@ -4,6 +4,8 @@ import io.restassured.response.Response;
 import org.example.api.models.response.common.*;
 import org.example.api.models.response.*;
 
+import java.util.List;
+
 public final class ApiResponseUtils {
     public static Subscription subscription(Response response) {
         return response.jsonPath().getObject("subscription", Subscription.class);
@@ -11,6 +13,11 @@ public final class ApiResponseUtils {
 
     public static Customer customer(Response response) {
         return response.jsonPath().getObject("customer", Customer.class);
+    }
+
+    public static Customers customers(Response response) {
+        // response.as() automatically maps the root JSON object to our Customers wrapper class
+        return response.as(Customers.class);
     }
 
     public static Invoice invoice(Response response) {
@@ -33,7 +40,7 @@ public final class ApiResponseUtils {
         return response.jsonPath().getObject("email_log", EmailLog.class);
     }
 
-    public static java.util.List<EmailLog> emailLogs(Response response) {
+    public static List<EmailLog> emailLogs(Response response) {
         return response.jsonPath().getList("email_logs", EmailLog.class);
     }
 }
