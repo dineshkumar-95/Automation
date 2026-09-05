@@ -1,4 +1,4 @@
-package org.example.api.models.response;
+package org.example.api.models.response.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -1,10 +1,8 @@
 package org.example.api.utils;
 
 import io.restassured.response.Response;
-import org.example.api.models.response.Card;
-import org.example.api.models.response.Customer;
-import org.example.api.models.response.Invoice;
-import org.example.api.models.response.Subscription;
+import org.example.api.models.response.common.*;
+import org.example.api.models.response.*;
 
 public final class ApiResponseUtils {
     public static Subscription subscription(Response response) {
@@ -21,5 +19,21 @@ public final class ApiResponseUtils {
 
     public static Card card(Response response) {
         return response.jsonPath().getObject("card", Card.class);
+    }
+
+    public static Transaction transaction(Response response) {
+        return response.jsonPath().getObject("transaction", Transaction.class);
+    }
+
+    public static PaymentSource paymentSource(Response response) {
+        return response.jsonPath().getObject("payment_source", PaymentSource.class);
+    }
+
+    public static EmailLog emailLog(Response response) {
+        return response.jsonPath().getObject("email_log", EmailLog.class);
+    }
+
+    public static java.util.List<EmailLog> emailLogs(Response response) {
+        return response.jsonPath().getList("email_logs", EmailLog.class);
     }
 }

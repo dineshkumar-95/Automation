@@ -6,6 +6,7 @@ import org.example.api.models.request.AddContactsToCustomerRequest;
 import org.example.api.models.request.CreateCustomerApiRequest;
 import org.example.api.models.request.UpdateContactsForCustomerRequest;
 import org.example.api.models.request.common.Contact;
+import org.example.api.models.response.Customer;
 import org.example.api.utils.ApiResponseUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -42,16 +43,23 @@ public class AddContactsToCustomerApiTest extends BaseTest {
                 .setContact(new Contact()
                         .setEmail("Contact_1_"+System.currentTimeMillis()+"@mailinator.com")
                         .setFirstName("Contact_1")
-                        .setId("3")
                 );
 
         Response response = customerApi.addContactToCustomer(customerId,request);
+        Customer customer = ApiResponseUtils.customer(response);
+        String ContactId  = customer.getContacts().get(0).getId();
+
 
         UpdateContactsForCustomerRequest updateRequest = new UpdateContactsForCustomerRequest()
                 .setContact(new Contact()
                         .setFirstName("update_contact")
-                        .setId("3"));
+                        .setId(ContactId)
+                );
         Response response1 = customerApi.updateContactForCustomer(customerId,updateRequest);
+         customer = ApiResponseUtils.customer(response1);
+         ContactId  = customer.getContacts().get(0).getId();
+
+
 
     }
 

@@ -5,7 +5,7 @@ import org.example.api.utils.ApiValidationUtils;
 import io.restassured.response.Response;
 import org.example.api.models.request.CreateCustomerApiRequest;
 import org.example.api.models.response.Customer;
-import org.example.api.models.response.Card;
+import org.example.api.models.response.common.Card;
 import org.example.api.utils.JsonComparator;
 import org.testng.annotations.Test;
 import org.example.BaseTest;
