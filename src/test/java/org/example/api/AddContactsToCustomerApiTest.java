@@ -7,6 +7,7 @@ import org.example.api.models.request.CreateCustomerApiRequest;
 import org.example.api.models.request.UpdateContactsForCustomerRequest;
 import org.example.api.models.request.common.Contact;
 import org.example.api.utils.ApiResponseUtils;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AddContactsToCustomerApiTest extends BaseTest {
@@ -20,6 +21,7 @@ public class AddContactsToCustomerApiTest extends BaseTest {
                 .setFirstName("contact");
         Response response = customerApi.createCustomerApi(request);
         customerId = ApiResponseUtils.customer(response).getId();
+//        Assert.assertTrue(false);
     }
 
 //    @Test

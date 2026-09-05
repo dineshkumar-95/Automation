@@ -10,6 +10,7 @@ import org.example.ui.pages.Customers.CustomerCreatePage;
 import org.example.ui.pages.Customers.CustomerDetailsPage;
 import org.example.ui.pages.Customers.CustomersIndexPage;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;

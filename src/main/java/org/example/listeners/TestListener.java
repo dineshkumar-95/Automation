@@ -25,7 +25,7 @@ public class TestListener implements ITestListener, IConfigurationListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        String testName = result.getTestClass().getClass().getName()+"."+result.getMethod().getMethodName();
+        String testName = result.getTestClass().getRealClass().getName()+"."+result.getMethod().getMethodName();
         ExtentTestManager.startTest(testName);
     }
 
@@ -55,7 +55,7 @@ public class TestListener implements ITestListener, IConfigurationListener {
 
     @Override
     public void onConfigurationFailure(ITestResult result) {
-        String testName = result.getTestClass().getClass().getName()+"."+result.getMethod().getMethodName();
+        String testName = result.getTestClass().getRealClass().getName()+"."+result.getMethod().getMethodName();
         // Create an Extent test if one doesn't already exist
         ExtentTest test = ExtentTestManager.getTest();
         if (test == null) {
