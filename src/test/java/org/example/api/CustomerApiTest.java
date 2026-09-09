@@ -36,8 +36,8 @@ public class CustomerApiTest extends BaseTest {
         Response response = customerApi.createCustomerApi(customerRequest);
         
         // Use new generic envelope pattern or backwards compatibility methods
-        Customer customer = ApiResponseUtils.customer(response);
-        Card card = ApiResponseUtils.card(response);
+        Customer customer = ApiResponseUtils.parse(response).getCustomer();
+        Card card = ApiResponseUtils.parse(response).getCard();
 
         System.out.println("Customer ID: " + customer.getId());
         System.out.println("Customer Email: " + customer.getEmail());

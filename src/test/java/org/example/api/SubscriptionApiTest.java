@@ -31,7 +31,7 @@ public class SubscriptionApiTest extends BaseTest {
                         .setCompany("Test Company");
 
                 Response response = customerApi.createCustomerApi(customerRequest);
-                customerId = ApiResponseUtils.customer(response).getId();
+                customerId = ApiResponseUtils.parse(response).getCustomer().getId();
         }
 
         @Test(description = "Simple subscription creation - basic fields only")
@@ -46,7 +46,7 @@ public class SubscriptionApiTest extends BaseTest {
                 request.addSubscriptionItem(new SubscriptionItem().setItemPriceId("tieAddon1-INR-Monthly").setQuantity(344));
 
                 Response response = subscriptionApi.createSubscriptionApi(customerId, request);
-                Subscription subscription = ApiResponseUtils.subscription(response);
+                Subscription subscription = ApiResponseUtils.parse(response).getSubscription();
                 System.out.println("Addon Name - " + subscription.getSubscriptionItems().get(1).getItemPriceId());
 
 //                assertNotNull(subscription);

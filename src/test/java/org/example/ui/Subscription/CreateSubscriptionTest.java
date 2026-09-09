@@ -22,7 +22,7 @@ public class CreateSubscriptionTest extends BaseTest {
                 .setCompany("Test Company");
 
         Response response = customerApi.createCustomerApi(customerRequest);
-        Customer customer = ApiResponseUtils.customer(response);
+        Customer customer = ApiResponseUtils.parse(response).getCustomer();
         testCustomerId = customer.getId();
         testCustomerEmail = customer.getEmail();
         

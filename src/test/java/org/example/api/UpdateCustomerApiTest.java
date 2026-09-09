@@ -22,7 +22,7 @@ public class UpdateCustomerApiTest extends BaseTest {
                 .setCompany("Test Company");
 
         Response response = customerApi.createCustomerApi(customerRequest);
-        customerId = ApiResponseUtils.customer(response).getId();
+        customerId = ApiResponseUtils.parse(response).getCustomer().getId();
     }
 
 
@@ -37,8 +37,8 @@ public class UpdateCustomerApiTest extends BaseTest {
                 .setCompany("Update Test Company");
 
         Response response = customerApi.updateCustomerApi(customerId,updateCustomerRequest);
-        Customer customer = ApiResponseUtils.customer(response);
-        Card card = ApiResponseUtils.card(response);
+        Customer customer = ApiResponseUtils.parse(response).getCustomer();
+        Card card = ApiResponseUtils.parse(response).getCard();
 
         System.out.println("Customer ID: " + customer.getId());
         System.out.println("Customer Email: " + customer.getEmail());
