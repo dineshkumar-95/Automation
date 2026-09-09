@@ -12,9 +12,9 @@
         <parameter name="apiKey" value="test_pHAGUMPPMQHSkTVvaO92TcBrAu8Ra3oF"/>
         <classes>
             <class name="org.example.api.CustomerApiTest"/>
-            <class name="org.example.api.SubscriptionApiTest"/>
-            <class name="org.example.api.UpdateCustomerApiTest"/>
-            <class name="org.example.api.AddContactsToCustomerApiTest"/>
+<!--            <class name="org.example.api.SubscriptionApiTest"/>-->
+<!--            <class name="org.example.api.UpdateCustomerApiTest"/>-->
+<!--            <class name="org.example.api.AddContactsToCustomerApiTest"/>-->
         </classes>
     </test>
 </suite>

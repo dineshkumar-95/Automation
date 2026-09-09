@@ -159,7 +159,7 @@ public class ChargebeeFormMapper {
         }
     }
 
-    public static void addCard(StringBuilder formParams, Card card) {
+    public static void addCard(StringBuilder formParams, CardRequest card) {
         if (card != null) {
             addField(formParams, "card[gateway_account_id]", card.getGatewayAccountId());
             addField(formParams, "card[first_name]", card.getFirstName());

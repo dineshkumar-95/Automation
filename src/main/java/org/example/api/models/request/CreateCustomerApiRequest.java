@@ -122,7 +122,7 @@ public class CreateCustomerApiRequest {
     private BillingAddress billingAddress;
 
     @JsonProperty("card")
-    private Card card;
+    private CardRequest card;
 
     @JsonProperty("bank_account")
     private BankAccount bankAccount;
@@ -449,11 +449,11 @@ public class CreateCustomerApiRequest {
         return this;
     }
 
-    public Card getCard() {
+    public CardRequest getCard() {
         return card;
     }
 
-    public CreateCustomerApiRequest setCard(Card card) {
+    public CreateCustomerApiRequest setCard(CardRequest card) {
         this.card = card;
         return this;
     }

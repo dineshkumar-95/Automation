@@ -47,7 +47,7 @@ public class ApiClient {
     }
 
     public RequestSpecification getAuthenticatedRequest() {
-        return RestAssured.given()
+        return given()
                 .spec(requestSpec)
                 .auth().basic(this.apiKey, "");
     }

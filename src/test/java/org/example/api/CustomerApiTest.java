@@ -1,5 +1,6 @@
 package org.example.api;
 
+import org.example.api.models.request.common.CardRequest;
 import org.example.api.utils.ApiResponseUtils;
 import org.example.api.utils.ApiValidationUtils;
 import io.restassured.response.Response;
@@ -31,7 +32,14 @@ public class CustomerApiTest extends BaseTest {
                 .setFirstName("Test")
                 .setLastName("User")
                 .setEmail("subscription_test_" + System.currentTimeMillis() + "@test.com")
-                .setCompany("Test Company");
+                .setCompany("Test Company")
+                .setCard(new CardRequest()
+                        .setFirstName("test")
+                        .setLastName("test")
+                        .setNumber("4111111111111111")
+                        .setCvv("123")
+                        .setExpiryMonth(12)
+                        .setExpiryYear(2032));
 
         Response response = customerApi.createCustomerApi(customerRequest);
         

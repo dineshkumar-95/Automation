@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Used by CreateCustomerApiRequest.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Card {
+public class CardRequest {
 
     @JsonProperty("gateway_account_id")
     private String gatewayAccountId;
@@ -59,50 +59,50 @@ public class Card {
     private Object additionalInformation;
 
     public String getGatewayAccountId() { return gatewayAccountId; }
-    public Card setGatewayAccountId(String gatewayAccountId) { this.gatewayAccountId = gatewayAccountId; return this; }
+    public CardRequest setGatewayAccountId(String gatewayAccountId) { this.gatewayAccountId = gatewayAccountId; return this; }
 
     public String getFirstName() { return firstName; }
-    public Card setFirstName(String firstName) { this.firstName = firstName; return this; }
+    public CardRequest setFirstName(String firstName) { this.firstName = firstName; return this; }
 
     public String getLastName() { return lastName; }
-    public Card setLastName(String lastName) { this.lastName = lastName; return this; }
+    public CardRequest setLastName(String lastName) { this.lastName = lastName; return this; }
 
     public String getNumber() { return number; }
-    public Card setNumber(String number) { this.number = number; return this; }
+    public CardRequest setNumber(String number) { this.number = number; return this; }
 
     public Integer getExpiryMonth() { return expiryMonth; }
-    public Card setExpiryMonth(Integer expiryMonth) { this.expiryMonth = expiryMonth; return this; }
+    public CardRequest setExpiryMonth(Integer expiryMonth) { this.expiryMonth = expiryMonth; return this; }
 
     public Integer getExpiryYear() { return expiryYear; }
-    public Card setExpiryYear(Integer expiryYear) { this.expiryYear = expiryYear; return this; }
+    public CardRequest setExpiryYear(Integer expiryYear) { this.expiryYear = expiryYear; return this; }
 
     public String getCvv() { return cvv; }
-    public Card setCvv(String cvv) { this.cvv = cvv; return this; }
+    public CardRequest setCvv(String cvv) { this.cvv = cvv; return this; }
 
     public String getPreferredScheme() { return preferredScheme; }
-    public Card setPreferredScheme(String preferredScheme) { this.preferredScheme = preferredScheme; return this; }
+    public CardRequest setPreferredScheme(String preferredScheme) { this.preferredScheme = preferredScheme; return this; }
 
     public String getBillingAddr1() { return billingAddr1; }
-    public Card setBillingAddr1(String billingAddr1) { this.billingAddr1 = billingAddr1; return this; }
+    public CardRequest setBillingAddr1(String billingAddr1) { this.billingAddr1 = billingAddr1; return this; }
 
     public String getBillingAddr2() { return billingAddr2; }
-    public Card setBillingAddr2(String billingAddr2) { this.billingAddr2 = billingAddr2; return this; }
+    public CardRequest setBillingAddr2(String billingAddr2) { this.billingAddr2 = billingAddr2; return this; }
 
     public String getBillingCity() { return billingCity; }
-    public Card setBillingCity(String billingCity) { this.billingCity = billingCity; return this; }
+    public CardRequest setBillingCity(String billingCity) { this.billingCity = billingCity; return this; }
 
     public String getBillingStateCode() { return billingStateCode; }
-    public Card setBillingStateCode(String billingStateCode) { this.billingStateCode = billingStateCode; return this; }
+    public CardRequest setBillingStateCode(String billingStateCode) { this.billingStateCode = billingStateCode; return this; }
 
     public String getBillingState() { return billingState; }
-    public Card setBillingState(String billingState) { this.billingState = billingState; return this; }
+    public CardRequest setBillingState(String billingState) { this.billingState = billingState; return this; }
 
     public String getBillingZip() { return billingZip; }
-    public Card setBillingZip(String billingZip) { this.billingZip = billingZip; return this; }
+    public CardRequest setBillingZip(String billingZip) { this.billingZip = billingZip; return this; }
 
     public String getBillingCountry() { return billingCountry; }
-    public Card setBillingCountry(String billingCountry) { this.billingCountry = billingCountry; return this; }
+    public CardRequest setBillingCountry(String billingCountry) { this.billingCountry = billingCountry; return this; }
 
     public Object getAdditionalInformation() { return additionalInformation; }
-    public Card setAdditionalInformation(Object additionalInformation) { this.additionalInformation = additionalInformation; return this; }
+    public CardRequest setAdditionalInformation(Object additionalInformation) { this.additionalInformation = additionalInformation; return this; }
 }
