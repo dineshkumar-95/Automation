@@ -1,6 +1,6 @@
 package org.example.api.mapper.common;
 
-import org.example.api.models.request.common.*;
+import org.example.api.dto.request.common.*;
 
 import java.util.List;
 

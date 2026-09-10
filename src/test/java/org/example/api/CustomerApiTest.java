@@ -1,12 +1,12 @@
 package org.example.api;
 
-import org.example.api.models.request.common.CardRequest;
+import org.example.api.dto.request.common.CardRequest;
 import org.example.api.utils.ApiResponseUtils;
 import org.example.api.utils.ApiValidationUtils;
 import io.restassured.response.Response;
-import org.example.api.models.request.CreateCustomerApiRequest;
-import org.example.api.models.response.Customer;
-import org.example.api.models.response.common.Card;
+import org.example.api.dto.request.CreateCustomerRequest;
+import org.example.api.model.Customer;
+import org.example.api.model.common.Card;
 import org.example.api.utils.JsonComparator;
 import org.testng.annotations.Test;
 import org.example.BaseTest;
@@ -28,7 +28,7 @@ public class CustomerApiTest extends BaseTest {
     public void createCustomerApiTest() throws Exception {
         String expectedJsonPath = "api/customers/CustomerApiTest_createCustomerApiTest.json";
 
-        CreateCustomerApiRequest customerRequest = new CreateCustomerApiRequest()
+        CreateCustomerRequest customerRequest = new CreateCustomerRequest()
                 .setFirstName("Test")
                 .setLastName("User")
                 .setEmail("subscription_test_" + System.currentTimeMillis() + "@test.com")
@@ -41,7 +41,7 @@ public class CustomerApiTest extends BaseTest {
                         .setExpiryMonth(12)
                         .setExpiryYear(2032));
 
-        Response response = customerApi.createCustomerApi(customerRequest);
+        Response response = customerApi.createCustomer(customerRequest);
         
         // Use new generic envelope pattern or backwards compatibility methods
         Customer customer = ApiResponseUtils.parse(response).getCustomer();

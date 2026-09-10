@@ -3,10 +3,10 @@ package org.example.api;
 import org.example.api.utils.ApiResponseUtils;
 import org.example.api.utils.ApiValidationUtils;
 import io.restassured.response.Response;
-import org.example.api.models.request.CreateCustomerApiRequest;
-import org.example.api.models.request.CreateSubscriptionApiRequest;
-import org.example.api.models.response.Subscription;
-import org.example.api.models.request.common.SubscriptionItem;
+import org.example.api.dto.request.CreateCustomerRequest;
+import org.example.api.dto.request.CreateSubscriptionRequest;
+import org.example.api.model.Subscription;
+import org.example.api.dto.request.common.SubscriptionItem;
 import org.example.api.utils.JsonComparator;
 import org.testng.annotations.Test;
 import org.example.BaseTest;
@@ -24,13 +24,13 @@ public class SubscriptionApiTest extends BaseTest {
         @Override
         public void setupTestClass() throws Exception {
                 // Additional setup for subscription tests if needed
-                CreateCustomerApiRequest customerRequest = new CreateCustomerApiRequest()
+                CreateCustomerRequest customerRequest = new CreateCustomerRequest()
                         .setFirstName("Test")
                         .setLastName("User")
                         .setEmail("subscription_test_" + System.currentTimeMillis() + "@test.com")
                         .setCompany("Test Company");
 
-                Response response = customerApi.createCustomerApi(customerRequest);
+                Response response = customerApi.createCustomer(customerRequest);
                 customerId = ApiResponseUtils.parse(response).getCustomer().getId();
         }
 
@@ -38,14 +38,14 @@ public class SubscriptionApiTest extends BaseTest {
         public void createSimpleSubscription() throws IOException {
 
                 // Simple approach using fluent builders
-                CreateSubscriptionApiRequest request = new CreateSubscriptionApiRequest();
+                CreateSubscriptionRequest request = new CreateSubscriptionRequest();
                 request.setAutoCollection("off");
 
                 // Add subscription items
                 request.addSubscriptionItem(new SubscriptionItem().setItemPriceId("ffPlan1-INR-Monthly"));
                 request.addSubscriptionItem(new SubscriptionItem().setItemPriceId("tieAddon1-INR-Monthly").setQuantity(344));
 
-                Response response = subscriptionApi.createSubscriptionApi(customerId, request);
+                Response response = subscriptionApi.createSubscription(customerId, request);
                 Subscription subscription = ApiResponseUtils.parse(response).getSubscription();
                 System.out.println("Addon Name - " + subscription.getSubscriptionItems().get(1).getItemPriceId());
 

@@ -1,7 +1,7 @@
 package org.example.api.mapper;
 
 import org.example.api.mapper.common.ChargebeeFormMapper;
-import org.example.api.models.request.CreateSubscriptionApiRequest;
+import org.example.api.dto.request.CreateSubscriptionRequest;
 import org.example.api.utils.FormUrlEncoder;
 
 public class CreateSubscriptionApiMapper {
@@ -9,7 +9,7 @@ public class CreateSubscriptionApiMapper {
     private CreateSubscriptionApiMapper() {
     }
 
-    public static String toFormUrlEncoded(CreateSubscriptionApiRequest request) {
+    public static String toFormUrlEncoded(CreateSubscriptionRequest request) {
 
         StringBuilder formParams = new StringBuilder();
 

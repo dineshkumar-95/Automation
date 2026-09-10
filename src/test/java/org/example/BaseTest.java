@@ -1,16 +1,15 @@
 package org.example;
 
-import org.example.api.ApiClient;
-import org.example.api.services.CustomerApi;
-import org.example.api.services.SubscriptionApi;
-import org.example.driver.DriverManager;
+import org.example.api.client.ApiClient;
+import org.example.api.service.CustomerService;
+import org.example.api.service.SubscriptionService;
+import org.example.ui.driver.DriverManager;
 import org.example.constants.Constants;
 import org.example.ui.pages.*;
 import org.example.ui.pages.Customers.CustomerCreatePage;
 import org.example.ui.pages.Customers.CustomerDetailsPage;
 import org.example.ui.pages.Customers.CustomersIndexPage;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
@@ -23,13 +22,13 @@ public abstract class BaseTest {
     protected CustomerCreatePage customerCreatePage;
     protected CustomersIndexPage customersIndexPage;
     protected CustomerDetailsPage customerDetailsPage;
-    protected CustomerApi customerApi;
-    protected SubscriptionApi subscriptionApi;
+    protected CustomerService customerApi;
+    protected SubscriptionService subscriptionApi;
 
     /** True only when a browser was initialised for this test class. */
     private boolean isUITest = false;
 
-    public void setupTestClass() throws Exception{};
+    public void setupTestClass() throws Exception {}
 
     @BeforeClass
     @Parameters({"browserName", "platformName", "browserVersion", "apiBaseUrl", "apiKey", "Test_Type"})
@@ -44,8 +43,7 @@ public abstract class BaseTest {
         if (testType.equalsIgnoreCase("api")) {
             setAPIClients(apiBaseUrl, apiKey);
             setupTestClass();
-        }
-        else {
+        } else {
             isUITest = true;
             DriverManager.init(browserName, platformName, browserVersion);
             setDrivers();
@@ -73,8 +71,8 @@ public abstract class BaseTest {
 
     private void setAPIClients(String apiBaseUrl, String apiKey) {
         ApiClient apiClient = new ApiClient(apiBaseUrl, apiKey);
-        customerApi = new CustomerApi(apiClient);
-        subscriptionApi = new SubscriptionApi(apiClient);
+        customerApi = new CustomerService(apiClient);
+        subscriptionApi = new SubscriptionService(apiClient);
     }
 
     protected void login() {

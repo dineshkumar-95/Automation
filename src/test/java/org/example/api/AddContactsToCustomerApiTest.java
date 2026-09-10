@@ -2,12 +2,12 @@ package org.example.api;
 
 import io.restassured.response.Response;
 import org.example.BaseTest;
-import org.example.api.models.request.AddContactsToCustomerRequest;
-import org.example.api.models.request.CreateCustomerApiRequest;
-import org.example.api.models.request.UpdateContactsForCustomerRequest;
-import org.example.api.models.request.common.Contact;
-import org.example.api.models.response.Customer;
-import org.example.api.models.response.wrappers.Customers;
+import org.example.api.dto.request.AddContactsToCustomerRequest;
+import org.example.api.dto.request.CreateCustomerRequest;
+import org.example.api.dto.request.UpdateContactsForCustomerRequest;
+import org.example.api.dto.request.common.Contact;
+import org.example.api.model.customer.Customer;
+//import org.example.api.model.wrappers.Customers;
 import org.example.api.utils.ApiResponseUtils;
 import org.testng.annotations.Test;
 
@@ -19,10 +19,10 @@ public class AddContactsToCustomerApiTest extends BaseTest {
 
     @Override
     public void setupTestClass(){
-        CreateCustomerApiRequest request = new CreateCustomerApiRequest()
+        CreateCustomerRequest request = new CreateCustomerRequest()
                 .setEmail("addcontacts"+System.currentTimeMillis()+"@mailinator.com")
                 .setFirstName("contact");
-        Response response = customerApi.createCustomerApi(request);
+        Response response = customerApi.createCustomer(request);
         customerId = ApiResponseUtils.parse(response).getCustomer().getId();
 //        Assert.assertTrue(false);
     }
@@ -35,7 +35,7 @@ public class AddContactsToCustomerApiTest extends BaseTest {
                         .setFirstName("Contact_1")
                 );
 
-        Response response = customerApi.addContactToCustomer(customerId,request);
+        Response response = customerApi.addContact(customerId,request);
 
     }
 
@@ -47,7 +47,7 @@ public class AddContactsToCustomerApiTest extends BaseTest {
                         .setFirstName("Contact_1")
                 );
 
-        Response response = customerApi.addContactToCustomer(customerId,request);
+        Response response = customerApi.addContact(customerId,request);
         Customer customer = ApiResponseUtils.parse(response).getCustomer();
         String ContactId  = customer.getContacts().get(0).getId();
 
@@ -57,7 +57,7 @@ public class AddContactsToCustomerApiTest extends BaseTest {
                         .setFirstName("update_contact")
                         .setId(ContactId)
                 );
-        Response response1 = customerApi.updateContactForCustomer(customerId,updateRequest);
+        Response response1 = customerApi.updateContact(customerId,updateRequest);
          customer = ApiResponseUtils.parse(response1).getCustomer();
         Customers customers = ApiResponseUtils.parseList(response1).getCustomers();
         List<Customer> cus = ApiResponseUtils.parseList(response1).getCustomersList();

@@ -1,13 +1,13 @@
 package org.example.api.mapper;
 
 import org.example.api.mapper.common.ChargebeeFormMapper;
-import org.example.api.models.request.UpdateCustomerApiRequest;
+import org.example.api.dto.request.UpdateCustomerRequest;
 import org.example.api.utils.FormUrlEncoder;
 
 public class UpdateCustomerApiMapper {
     private UpdateCustomerApiMapper() {
     }
-    public static String toFormUrlEncoded(UpdateCustomerApiRequest request) {
+    public static String toFormUrlEncoded(UpdateCustomerRequest request) {
 
         StringBuilder formParams = new StringBuilder();
 

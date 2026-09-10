@@ -2,6 +2,7 @@ package org.example.api.services;
 
 import org.example.api.ApiClient;
 import io.restassured.response.Response;
+import org.example.api.dto.request.CreateSubscriptionRequest;
 import org.example.api.mapper.CreateSubscriptionApiMapper;
 import org.example.constants.ApiConstants;
 import org.example.api.models.request.CreateSubscriptionApiRequest;
@@ -16,7 +17,7 @@ public class SubscriptionApi {
     /**
      * Create a Subscription via API and return the Response
      */
-    public Response createSubscriptionApi(String customerId, CreateSubscriptionApiRequest createSubscriptionApiRequest) {
+    public Response createSubscriptionApi(String customerId, CreateSubscriptionRequest createSubscriptionApiRequest) {
         return apiClient.getAuthenticatedRequest()
                 .body(CreateSubscriptionApiMapper.toFormUrlEncoded(createSubscriptionApiRequest))
                 .when()

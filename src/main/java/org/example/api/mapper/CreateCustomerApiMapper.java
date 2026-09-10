@@ -1,7 +1,7 @@
 package org.example.api.mapper;
 
 import org.example.api.mapper.common.ChargebeeFormMapper;
-import org.example.api.models.request.CreateCustomerApiRequest;
+import org.example.api.dto.request.CreateCustomerRequest;
 import org.example.api.utils.FormUrlEncoder;
 
 public class CreateCustomerApiMapper {
@@ -9,7 +9,7 @@ public class CreateCustomerApiMapper {
     }
 
 
-        public static String toFormUrlEncoded(CreateCustomerApiRequest request) {
+        public static String toFormUrlEncoded(CreateCustomerRequest request) {
 
             StringBuilder formParams = new StringBuilder();
 

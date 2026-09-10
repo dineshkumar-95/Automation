@@ -1,7 +1,7 @@
 package org.example.api.mapper;
 
 import org.example.api.mapper.common.ChargebeeFormMapper;
-import org.example.api.models.request.UpdateContactsForCustomerRequest;
+import org.example.api.dto.request.UpdateContactsForCustomerRequest;
 
 public class UpdateContactsForCustomerMapper {
 

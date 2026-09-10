@@ -1,17 +1,18 @@
 package org.example.api.utils;
 
 import io.restassured.response.Response;
-import org.example.api.models.response.wrappers.ChargebeeResponse;
-import org.example.api.models.response.wrappers.ChargebeeListResponse;
+import org.example.api.dto.response.ApiResponse;
+import org.example.api.dto.response.ApiListResponse;
 
 public final class ApiResponseUtils {
-    
-    public static ChargebeeResponse parse(Response response) {
-        return response.as(ChargebeeResponse.class);
+
+    /** Parse a single-entity Chargebee API response. */
+    public static ApiResponse parse(Response response) {
+        return response.as(ApiResponse.class);
     }
 
-    public static ChargebeeListResponse parseList(Response response) {
-        return response.as(ChargebeeListResponse.class);
+    /** Parse a list Chargebee API response (e.g., List Customers). */
+    public static ApiListResponse parseList(Response response) {
+        return response.as(ApiListResponse.class);
     }
-
 }

@@ -1,10 +1,10 @@
 package org.example.api;
 
 import io.restassured.response.Response;
-import org.example.api.models.request.CreateCustomerApiRequest;
-import org.example.api.models.request.UpdateCustomerApiRequest;
-import org.example.api.models.response.common.Card;
-import org.example.api.models.response.Customer;
+import org.example.api.dto.request.CreateCustomerRequest;
+import org.example.api.dto.request.UpdateCustomerRequest;
+import org.example.api.model.common.Card;
+import org.example.api.model.Customer;
 import org.example.api.utils.ApiResponseUtils;
 import org.example.BaseTest;
 import org.testng.annotations.Test;
@@ -15,13 +15,13 @@ public class UpdateCustomerApiTest extends BaseTest {
     @Override
     public void setupTestClass() throws Exception {
 
-        CreateCustomerApiRequest customerRequest = new CreateCustomerApiRequest()
+        CreateCustomerRequest customerRequest = new CreateCustomerRequest()
                 .setFirstName("Test")
                 .setLastName("User")
                 .setEmail("subscription_test_" + System.currentTimeMillis() + "@test.com")
                 .setCompany("Test Company");
 
-        Response response = customerApi.createCustomerApi(customerRequest);
+        Response response = customerApi.createCustomer(customerRequest);
         customerId = ApiResponseUtils.parse(response).getCustomer().getId();
     }
 
@@ -30,13 +30,13 @@ public class UpdateCustomerApiTest extends BaseTest {
     public void updateCustomerApiTest() throws Exception {
         String expectedJsonPath = "api/customers/CustomerApiTest_createCustomerApiTest.json";
 
-        UpdateCustomerApiRequest updateCustomerRequest = new UpdateCustomerApiRequest()
+        UpdateCustomerRequest updateCustomerRequest = new UpdateCustomerRequest()
                 .setFirstName("TestUpdate")
                 .setLastName("User")
                 .setEmail("subscription_test_" + System.currentTimeMillis() + "@test.com")
                 .setCompany("Update Test Company");
 
-        Response response = customerApi.updateCustomerApi(customerId,updateCustomerRequest);
+        Response response = customerApi.updateCustomer(customerId,updateCustomerRequest);
         Customer customer = ApiResponseUtils.parse(response).getCustomer();
         Card card = ApiResponseUtils.parse(response).getCard();
 
