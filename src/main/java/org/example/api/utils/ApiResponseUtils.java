@@ -1,15 +1,8 @@
 package org.example.api.utils;
 
 import io.restassured.response.Response;
-import org.example.api.models.response.ChargebeeResponse;
-import org.example.api.models.response.ChargebeeListResponse;
-import org.example.api.models.response.Customers;
-import org.example.api.models.response.Customer;
-import org.example.api.models.response.Subscription;
-import org.example.api.models.response.Invoice;
-import org.example.api.models.response.EmailLog;
-import org.example.api.models.response.common.*;
-import java.util.List;
+import org.example.api.models.response.wrappers.ChargebeeResponse;
+import org.example.api.models.response.wrappers.ChargebeeListResponse;
 
 public final class ApiResponseUtils {
     

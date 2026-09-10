@@ -1,8 +1,9 @@
-package org.example.api.models.response;
+package org.example.api.models.response.wrappers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.example.api.models.response.*;
 import org.example.api.models.response.common.Card;
 
 import java.util.List;
@@ -38,14 +39,20 @@ public class ChargebeeListResponse {
 
     // Convenience methods to extract specific entity types from the list
     public Customers getCustomers() {
-        if (list == null) {
-            return new Customers();
-        }
-        List<Customer> customerList = list.stream()
+        return new Customers().setList(
+                list.stream()
                 .map(ChargebeeResponse::getCustomer)
-                .filter(customer -> customer != null)
-                .collect(Collectors.toList());
-        return new Customers().setList(customerList);
+                .collect(Collectors.toList())
+        );
+
+    }
+
+    public List<Customer> getCustomersList() {
+        return list.stream()
+                        .map(ChargebeeResponse::getCustomer)
+                        .collect(Collectors.toList()
+        );
+
     }
 
     public Cards getCards() {

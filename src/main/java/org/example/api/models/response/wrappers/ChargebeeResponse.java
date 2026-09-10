@@ -1,8 +1,11 @@
-package org.example.api.models.response;
+package org.example.api.models.response.wrappers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.example.api.models.response.Customer;
+import org.example.api.models.response.Invoice;
+import org.example.api.models.response.Subscription;
 import org.example.api.models.response.common.*;
 import org.example.api.models.response.EmailLog;
 
