@@ -136,6 +136,17 @@ jobs:
         env:
           DISPLAY: :99
           CI: true
+          DEFAULT_SITE: chrislibhi-test
+
+          # Test1 Site Credentials
+          TEST1_USERNAME: ${{ secrets.TEST1_USERNAME }}
+          TEST1_PASSWORD: ${{ secrets.TEST1_PASSWORD }}
+          TEST1_API_KEY: ${{ secrets.TEST1_API_KEY }}
+
+          # Chrislibhi-test Site Credentials
+          CHRISLIBHI_TEST_USERNAME: ${{ secrets.CHRISLIBHI_TEST_USERNAME }}
+          CHRISLIBHI_TEST_PASSWORD: ${{ secrets.CHRISLIBHI_TEST_PASSWORD }}
+          CHRISLIBHI_TEST_API_KEY: ${{ secrets.CHRISLIBHI_TEST_API_KEY }}
 
           # LambdaTest credentials
           LT_USERNAME: ${{ secrets.LT_USERNAME }}

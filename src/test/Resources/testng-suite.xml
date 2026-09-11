@@ -5,12 +5,10 @@
         <listener class-name="org.example.listeners.AnnotationTransformer"/>
     </listeners>
 
-    <parameter name="apiBaseUrl" value="https://dinesh-kumar-test.chargebee.com"/>
-    <parameter name="apiKey" value="test_pHAGUMPPMQHSkTVvaO92TcBrAu8Ra3oF"/>
-
     <!-- Local execution test (Only browserName passed) -->
     <test name="LocalFirefoxTest">
         <parameter name="browserName" value="firefox"/>
+        <parameter name="siteName" value="chrislibhi-test"/>
         <classes>
 <!--            <class name="Test.Customer.CustomerTesting"/>-->
             <class name="org.example.ui.Subscription.CreateSubscriptionTest"/>

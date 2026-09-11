@@ -1,21 +1,21 @@
 package org.example.constants;
 
+import org.example.config.ConfigManager;
+
 public class ApiConstants {
 
-    public static final String TEST_SITE = "dinesh-kumar-test";
-    public static final String DOMAIN = "chargebee.com";
-
     // API Endpoints
-    public static final String CREATE_CUSTOMERS_ENDPOINT = "/api/v2/customers";
-    public static final String UPDATE_CUSTOMERS_ENDPOINT = "/api/v2/customers/{customerId}";
-    public static final String ADD_CONTACTS_TO_CUSTOMER_ENDPOINT = "/api/v2/customers/{customerId}/add_contact";
-    public static final String UPDATE_CONTACTS_FOR_CUSTOMER_ENDPOINT = "/api/v2/customers/{customerId}/update_contact";
+    public static final String CREATE_CUSTOMERS_ENDPOINT = "/customers";
+    public static final String UPDATE_CUSTOMERS_ENDPOINT = "/customers/{customerId}";
+    public static final String ADD_CONTACTS_TO_CUSTOMER_ENDPOINT = "/customers/{customerId}/add_contact";
+    public static final String UPDATE_CONTACTS_FOR_CUSTOMER_ENDPOINT = "/customers/{customerId}/update_contact";
+    public static final String LIST_CUSTOMERS_ENDPOINT = "/customers";
+    public static final String GET_CUSTOMERS_ENDPOINT = "/customers/{customerId}";
 
-    public static final String CUSTOMERS_ENDPOINT = "/api/v2/customers";
-    public static final String LIST_CUSTOMERS_ENDPOINT = "/api/v2/customers";
-    public static final String GET_CUSTOMERS_ENDPOINT = "/api/v2/customers/";
-    public static final String SUBSCRIPTIONS_ENDPOINT = "/api/v2/subscriptions";
-    public static final String SUBSCRIPTION_FOR_ITEMS_ENDPOINT = "/api/v2/customers/{customerId}/subscription_for_items";
+    public static final String LIST_SUBSCRIPTIONS_ENDPOINT = "/subscriptions";
+    public static final String SUBSCRIPTION_FOR_ITEMS_ENDPOINT = "/customers/{customerId}/subscription_for_items";
+
+
     public static final String INVOICES_ENDPOINT = "/api/v2/invoices";
     public static final String PLANS_ENDPOINT = "/api/v2/plans";
     
@@ -36,7 +36,4 @@ public class ApiConstants {
     // Content Types
     public static final String CONTENT_TYPE_JSON = "application/json";
     public static final String CONTENT_TYPE_FORM_URLENCODED = "application/x-www-form-urlencoded";
-    
-    // API Keys (should be moved to environment variables)
-    public static final String API_KEY = "test_pHAGUMPPMQHSkTVvaO92TcBrAu8Ra3oF"; // Replace with actual API key
 }

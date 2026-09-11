@@ -2,8 +2,9 @@ package org.example.ui.pages;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.example.ui.BasePage;
+import org.example.config.ConfigManager;
 import org.example.constants.Constants;
+import org.example.ui.BasePage;
 import org.example.ui.pages.Customers.CustomersIndexPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +36,7 @@ public class HomePage extends BasePage {
         return this;
     }
     public CustomersIndexPage navigateToCustomersIndexPage() {
-        loadURL(Constants.CUSTOMERS_INDEX_PAGE_URL);
+        loadURL(ConfigManager.getSiteUrl() + Constants.CUSTOMERS_PATH);
         return new CustomersIndexPage(driver);
     }
 }

@@ -3,8 +3,9 @@ package org.example;
 import org.example.api.ApiClient;
 import org.example.api.services.CustomerApi;
 import org.example.api.services.SubscriptionApi;
-import org.example.driver.DriverManager;
+import org.example.config.ConfigManager;
 import org.example.constants.Constants;
+import org.example.driver.DriverManager;
 import org.example.ui.pages.*;
 import org.example.ui.pages.Customers.CustomerCreatePage;
 import org.example.ui.pages.Customers.CustomerDetailsPage;
@@ -32,24 +33,27 @@ public abstract class BaseTest {
     public void setupTestClass() throws Exception{};
 
     @BeforeClass
-    @Parameters({"browserName", "platformName", "browserVersion", "apiBaseUrl", "apiKey", "Test_Type"})
+    @Parameters({"browserName", "platformName", "browserVersion", "Test_Type", "siteName"})
     public void beforeClass(
             @Optional("firefox") String browserName,
             @Optional String platformName,
             @Optional String browserVersion,
-            @Optional String apiBaseUrl,
-            @Optional String apiKey,
-            @Optional("UI") String testType
+            @Optional("UI") String testType,
+            @Optional String siteName
     ) throws Exception {
+        if (siteName != null && !siteName.isEmpty()) {
+            ConfigManager.setSite(siteName);
+        }
+        
         if (testType.equalsIgnoreCase("api")) {
-            setAPIClients(apiBaseUrl, apiKey);
+            setAPIClients(ConfigManager.getApiBaseUri(), ConfigManager.getApiKey());
             setupTestClass();
         }
         else {
             isUITest = true;
             DriverManager.init(browserName, platformName, browserVersion);
             setDrivers();
-            setAPIClients(apiBaseUrl, apiKey);
+            setAPIClients(ConfigManager.getApiBaseUri(), ConfigManager.getApiKey());
             login();
             setupTestClass();
         }
@@ -78,8 +82,8 @@ public abstract class BaseTest {
     }
 
     protected void login() {
-        loginPage.loadURL(Constants.LOGIN_URL);
-        loginPage.login(Constants.USERNAME, Constants.PASSWORD);
+        loginPage.loadURL(ConfigManager.getSiteUrl() + Constants.DASHBOARDS_PATH);
+        loginPage.login(ConfigManager.getUsername(), ConfigManager.getPassword());
         homePage.waitForHomePageLoad();
     }
 }
