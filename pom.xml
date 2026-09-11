@@ -17,7 +17,7 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!-- Default TestNG suite; override from Jenkins: -DsuiteXmlFile=src/test/Resources/parallel.xml -->
-        <suiteXmlFile>src/test/Resources/api-testng-suite.xml</suiteXmlFile>
+        <suiteXmlFile>src/test/resources/api-testng-suite.xml</suiteXmlFile>
     </properties>
 
     <dependencies>

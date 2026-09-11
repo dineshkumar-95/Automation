@@ -129,7 +129,7 @@ jobs:
       - name: Run UI Tests
         run: |
           mvn test \
-            -DsuiteXmlFile=src/test/Resources/api-testng-suite.xml \
+            -DsuiteXmlFile=src/test/resources/api-testng-suite.xml \
             -DbrowserName="${{ env.browserName }}" \
             -DplatformName="${{ env.platformName }}" \
             -DbrowserVersion="${{ env.browserVersion }}"
