@@ -59,8 +59,8 @@ public class AddContactsToCustomerApiTest extends BaseTest {
                 );
         Response response1 = customerApi.updateContactForCustomer(customerId,updateRequest);
          customer = ApiResponseUtils.parse(response1).getCustomer();
-        Customers customers = ApiResponseUtils.parseList(response1).getCustomers();
-        List<Customer> cus = ApiResponseUtils.parseList(response1).getCustomersList();
+//        Customers customers = ApiResponseUtils.parseList(response1).getCustomers();
+//        List<Customer> cus = ApiResponseUtils.parseList(response1).getCustomersList();
          ContactId  = customer.getContacts().get(0).getId();
 
 
