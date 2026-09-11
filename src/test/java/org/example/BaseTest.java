@@ -39,12 +39,9 @@ public abstract class BaseTest {
             @Optional String platformName,
             @Optional String browserVersion,
             @Optional("UI") String testType,
-            @Optional String siteName
+            String siteName
     ) throws Exception {
-        if (siteName != null && !siteName.isEmpty()) {
             ConfigManager.setSite(siteName);
-        }
-        
         if (testType.equalsIgnoreCase("api")) {
             setAPIClients(ConfigManager.getApiBaseUri(), ConfigManager.getApiKey());
             setupTestClass();
