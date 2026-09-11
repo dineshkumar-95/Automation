@@ -33,7 +33,7 @@ public abstract class BaseTest {
     public void setupTestClass() throws Exception{};
 
     @BeforeClass
-    @Parameters({"browserName", "platformName", "browserVersion", "Test_Type", "siteName"})
+    @Parameters({"browserName", "platformName", "browserVersion", "testType", "siteName"})
     public void beforeClass(
             @Optional("firefox") String browserName,
             @Optional String platformName,
