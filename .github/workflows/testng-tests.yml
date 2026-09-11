@@ -1,4 +1,4 @@
-name: TestNG UI Tests
+name: TestNG Tests
 
 on:
 #  push:
@@ -126,7 +126,7 @@ jobs:
       # --------------------------------------------------
       # Run TestNG UI Tests
       # --------------------------------------------------
-      - name: Run UI Tests
+      - name: Run Tests
         run: |
           mvn test \
             -DsuiteXmlFile=src/test/resources/api-testng-suite.xml \
