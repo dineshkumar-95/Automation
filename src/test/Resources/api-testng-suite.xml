@@ -8,7 +8,6 @@
     <!-- API Tests - No browser required -->
     <test name="APITests">
         <parameter name="Test_Type" value="API"/>
-        <parameter name="Test_Type" value="API"/>
 <!--        <parameter name="apiBaseUrl" value="https://chrislibhi-test.chargebee.com"/>-->
 <!--        <parameter name="apiKey" value="test_521niwZpq3fgb5TJhmcdXdH4ECN3Iqy4cu"/>-->
         <classes>
