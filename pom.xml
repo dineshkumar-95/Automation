@@ -74,12 +74,25 @@
             <version>2.15.2</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/com.epam.healenium/healenium-web -->
-<!--        <dependency>-->
-<!--            <groupId>com.epam.healenium</groupId>-->
-<!--            <artifactId>healenium-web</artifactId>-->
-<!--            <version>3.6.0</version>-->
-<!--&lt;!&ndash;            <scope>compile</scope>&ndash;&gt;-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.epam.healenium</groupId>
+            <artifactId>healenium-web</artifactId>
+            <version>3.6.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.testcontainers</groupId>
+                    <artifactId>junit-jupiter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-engine</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
