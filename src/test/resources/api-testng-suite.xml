@@ -10,9 +10,9 @@
         <parameter name="testType" value="API"/>
         <parameter name="siteName" value="chrislibhi-test"/>
         <classes>
-            <class name="org.example.api.CustomerApiTest"/>
+<!--            <class name="org.example.api.CustomerApiTest"/>-->
 <!--            <class name="org.example.api.SubscriptionApiTest"/>-->
-<!--            <class name="org.example.api.ListCustomersApiTest"/>-->
+            <class name="org.example.api.ListCustomersApiTest"/>
         </classes>
     </test>
 

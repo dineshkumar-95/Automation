@@ -10,7 +10,7 @@ import org.example.api.models.request.filter.TimestampFilter;
  * Supports exact parameters accepted by List Customers endpoint with fluent sub-builders.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ListCustomersRequest {
+public class ListCustomersApiRequest {
 
     // Base Pagination & Sorting fields for List Customers API
     @JsonProperty("limit")
@@ -30,154 +30,154 @@ public class ListCustomersRequest {
 
     // Filter fields
     @JsonProperty("id")
-    private StringFilter<ListCustomersRequest> id;
+    private StringFilter<ListCustomersApiRequest> id;
 
     @JsonProperty("first_name")
-    private StringFilter<ListCustomersRequest> firstName;
+    private StringFilter<ListCustomersApiRequest> firstName;
 
     @JsonProperty("last_name")
-    private StringFilter<ListCustomersRequest> lastName;
+    private StringFilter<ListCustomersApiRequest> lastName;
 
     @JsonProperty("email")
-    private StringFilter<ListCustomersRequest> email;
+    private StringFilter<ListCustomersApiRequest> email;
 
     @JsonProperty("company")
-    private StringFilter<ListCustomersRequest> company;
+    private StringFilter<ListCustomersApiRequest> company;
 
     @JsonProperty("phone")
-    private StringFilter<ListCustomersRequest> phone;
+    private StringFilter<ListCustomersApiRequest> phone;
 
     @JsonProperty("auto_collection")
-    private StringFilter<ListCustomersRequest> autoCollection;
+    private StringFilter<ListCustomersApiRequest> autoCollection;
 
     @JsonProperty("taxability")
-    private StringFilter<ListCustomersRequest> taxability;
+    private StringFilter<ListCustomersApiRequest> taxability;
 
     @JsonProperty("created_at")
-    private TimestampFilter<ListCustomersRequest> createdAt;
+    private TimestampFilter<ListCustomersApiRequest> createdAt;
 
     @JsonProperty("updated_at")
-    private TimestampFilter<ListCustomersRequest> updatedAt;
+    private TimestampFilter<ListCustomersApiRequest> updatedAt;
 
-    public ListCustomersRequest() {
+    public ListCustomersApiRequest() {
     }
 
     // Fluent Setters for Base Pagination & Sorting
-    public ListCustomersRequest limit(Integer limit) {
+    public ListCustomersApiRequest limit(Integer limit) {
         this.limit = limit;
         return this;
     }
 
-    public ListCustomersRequest setLimit(Integer limit) {
+    public ListCustomersApiRequest setLimit(Integer limit) {
         this.limit = limit;
         return this;
     }
 
-    public ListCustomersRequest offset(String offset) {
+    public ListCustomersApiRequest offset(String offset) {
         this.offset = offset;
         return this;
     }
 
-    public ListCustomersRequest setOffset(String offset) {
+    public ListCustomersApiRequest setOffset(String offset) {
         this.offset = offset;
         return this;
     }
 
-    public ListCustomersRequest includeDeleted(Boolean includeDeleted) {
+    public ListCustomersApiRequest includeDeleted(Boolean includeDeleted) {
         this.includeDeleted = includeDeleted;
         return this;
     }
 
-    public ListCustomersRequest setIncludeDeleted(Boolean includeDeleted) {
+    public ListCustomersApiRequest setIncludeDeleted(Boolean includeDeleted) {
         this.includeDeleted = includeDeleted;
         return this;
     }
 
-    public ListCustomersRequest sortByAsc(String sortByAsc) {
+    public ListCustomersApiRequest sortByAsc(String sortByAsc) {
         this.sortByAsc = sortByAsc;
         return this;
     }
 
-    public ListCustomersRequest setSortByAsc(String sortByAsc) {
+    public ListCustomersApiRequest setSortByAsc(String sortByAsc) {
         this.sortByAsc = sortByAsc;
         return this;
     }
 
-    public ListCustomersRequest sortByDesc(String sortByDesc) {
+    public ListCustomersApiRequest sortByDesc(String sortByDesc) {
         this.sortByDesc = sortByDesc;
         return this;
     }
 
-    public ListCustomersRequest setSortByDesc(String sortByDesc) {
+    public ListCustomersApiRequest setSortByDesc(String sortByDesc) {
         this.sortByDesc = sortByDesc;
         return this;
     }
 
     // Fluent Sub-Builder Entry Methods (Returns Sub-Builder with 'this' as parent)
-    public StringFilter<ListCustomersRequest> id() {
+    public StringFilter<ListCustomersApiRequest> id() {
         if (this.id == null) {
             this.id = new StringFilter<>(this);
         }
         return this.id;
     }
 
-    public StringFilter<ListCustomersRequest> firstName() {
+    public StringFilter<ListCustomersApiRequest> firstName() {
         if (this.firstName == null) {
             this.firstName = new StringFilter<>(this);
         }
         return this.firstName;
     }
 
-    public StringFilter<ListCustomersRequest> lastName() {
+    public StringFilter<ListCustomersApiRequest> lastName() {
         if (this.lastName == null) {
             this.lastName = new StringFilter<>(this);
         }
         return this.lastName;
     }
 
-    public StringFilter<ListCustomersRequest> email() {
+    public StringFilter<ListCustomersApiRequest> email() {
         if (this.email == null) {
             this.email = new StringFilter<>(this);
         }
         return this.email;
     }
 
-    public StringFilter<ListCustomersRequest> company() {
+    public StringFilter<ListCustomersApiRequest> company() {
         if (this.company == null) {
             this.company = new StringFilter<>(this);
         }
         return this.company;
     }
 
-    public StringFilter<ListCustomersRequest> phone() {
+    public StringFilter<ListCustomersApiRequest> phone() {
         if (this.phone == null) {
             this.phone = new StringFilter<>(this);
         }
         return this.phone;
     }
 
-    public StringFilter<ListCustomersRequest> autoCollection() {
+    public StringFilter<ListCustomersApiRequest> autoCollection() {
         if (this.autoCollection == null) {
             this.autoCollection = new StringFilter<>(this);
         }
         return this.autoCollection;
     }
 
-    public StringFilter<ListCustomersRequest> taxability() {
+    public StringFilter<ListCustomersApiRequest> taxability() {
         if (this.taxability == null) {
             this.taxability = new StringFilter<>(this);
         }
         return this.taxability;
     }
 
-    public TimestampFilter<ListCustomersRequest> createdAt() {
+    public TimestampFilter<ListCustomersApiRequest> createdAt() {
         if (this.createdAt == null) {
             this.createdAt = new TimestampFilter<>(this);
         }
         return this.createdAt;
     }
 
-    public TimestampFilter<ListCustomersRequest> updatedAt() {
+    public TimestampFilter<ListCustomersApiRequest> updatedAt() {
         if (this.updatedAt == null) {
             this.updatedAt = new TimestampFilter<>(this);
         }
@@ -205,43 +205,43 @@ public class ListCustomersRequest {
         return sortByDesc;
     }
 
-    public StringFilter<ListCustomersRequest> getId() {
+    public StringFilter<ListCustomersApiRequest> getId() {
         return id;
     }
 
-    public StringFilter<ListCustomersRequest> getFirstName() {
+    public StringFilter<ListCustomersApiRequest> getFirstName() {
         return firstName;
     }
 
-    public StringFilter<ListCustomersRequest> getLastName() {
+    public StringFilter<ListCustomersApiRequest> getLastName() {
         return lastName;
     }
 
-    public StringFilter<ListCustomersRequest> getEmail() {
+    public StringFilter<ListCustomersApiRequest> getEmail() {
         return email;
     }
 
-    public StringFilter<ListCustomersRequest> getCompany() {
+    public StringFilter<ListCustomersApiRequest> getCompany() {
         return company;
     }
 
-    public StringFilter<ListCustomersRequest> getPhone() {
+    public StringFilter<ListCustomersApiRequest> getPhone() {
         return phone;
     }
 
-    public StringFilter<ListCustomersRequest> getAutoCollection() {
+    public StringFilter<ListCustomersApiRequest> getAutoCollection() {
         return autoCollection;
     }
 
-    public StringFilter<ListCustomersRequest> getTaxability() {
+    public StringFilter<ListCustomersApiRequest> getTaxability() {
         return taxability;
     }
 
-    public TimestampFilter<ListCustomersRequest> getCreatedAt() {
+    public TimestampFilter<ListCustomersApiRequest> getCreatedAt() {
         return createdAt;
     }
 
-    public TimestampFilter<ListCustomersRequest> getUpdatedAt() {
+    public TimestampFilter<ListCustomersApiRequest> getUpdatedAt() {
         return updatedAt;
     }
 }

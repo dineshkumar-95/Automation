@@ -13,7 +13,7 @@ import org.example.constants.ApiConstants;
 import org.example.api.models.request.CreateCustomerApiRequest;
 
 import org.example.api.mapper.ListCustomersApiMapper;
-import org.example.api.models.request.ListCustomersRequest;
+import org.example.api.models.request.ListCustomersApiRequest;
 
 public class CustomerApi {
 
@@ -27,7 +27,7 @@ public class CustomerApi {
     /**
      * List customers via API with filtering parameters and return the Response
      */
-    public Response listCustomersApi(ListCustomersRequest request) {
+    public Response listCustomersApi(ListCustomersApiRequest request) {
         return apiClient.getAuthenticatedRequest()
                 .queryParams(ListCustomersApiMapper.toQueryParams(request))
                 .when()

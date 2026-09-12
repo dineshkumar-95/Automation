@@ -1,7 +1,7 @@
 package org.example.api.mapper;
 
 import org.example.api.mapper.common.ChargebeeFilterMapper;
-import org.example.api.models.request.ListCustomersRequest;
+import org.example.api.models.request.ListCustomersApiRequest;
 import org.example.api.utils.QueryParamUtils;
 
 import java.util.HashMap;
@@ -15,7 +15,7 @@ public class ListCustomersApiMapper {
     /**
      * Converts ListCustomersRequest object into a Map of query parameters suitable for RestAssured queryParams()
      */
-    public static Map<String, Object> toQueryParams(ListCustomersRequest request) {
+    public static Map<String, Object> toQueryParams(ListCustomersApiRequest request) {
         Map<String, Object> params = new HashMap<>();
         if (request == null) {
             return params;
