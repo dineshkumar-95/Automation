@@ -1,4 +1,3 @@
-default: chrislibhi-test
 sites:
   test1:
     site_url: https://dinesh-kumar-test.chargebee.com

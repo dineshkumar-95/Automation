@@ -61,6 +61,7 @@ public abstract class BaseTest {
         if (isUITest) {
             DriverManager.quit();
         }
+        ConfigManager.clearSiteConfig();
     }
 
     private void setDrivers() {
