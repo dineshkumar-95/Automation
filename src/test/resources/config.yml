@@ -1,9 +1,0 @@
-default: chrislibhi-test
-sites:
-  test1:
-    site_url: https://dinesh-kumar-test.chargebee.com
-    api_base_uri: https://dinesh-kumar-test.chargebee.com/api/v2
-    
-  chrislibhi-test:
-    site_url: https://dinesh-kumar-test.chargebee.com
-    api_base_uri: https://chrislibhi-test.chargebee.com/api/v2
