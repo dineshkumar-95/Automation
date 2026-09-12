@@ -12,6 +12,9 @@ import org.example.api.models.request.UpdateCustomerApiRequest;
 import org.example.constants.ApiConstants;
 import org.example.api.models.request.CreateCustomerApiRequest;
 
+import org.example.api.mapper.ListCustomersApiMapper;
+import org.example.api.models.request.ListCustomersRequest;
+
 public class CustomerApi {
 
 
@@ -19,6 +22,21 @@ public class CustomerApi {
 
     public CustomerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
+    }
+
+    /**
+     * List customers via API with filtering parameters and return the Response
+     */
+    public Response listCustomersApi(ListCustomersRequest request) {
+        return apiClient.getAuthenticatedRequest()
+                .queryParams(ListCustomersApiMapper.toQueryParams(request))
+                .when()
+                .get(ApiConstants.LIST_CUSTOMERS_ENDPOINT)
+                .then()
+                .spec(apiClient.getResponseSpec())
+                .statusCode(ApiConstants.STATUS_OK)
+                .extract()
+                .response();
     }
 
     /**
