@@ -27,6 +27,8 @@ public class ListCustomersApiMapper {
         QueryParamUtils.addParam(params, "include_deleted", request.getIncludeDeleted());
         QueryParamUtils.addParam(params, "sort_by[asc]", request.getSortByAsc());
         QueryParamUtils.addParam(params, "sort_by[desc]", request.getSortByDesc());
+        QueryParamUtils.addParam(params, "sort_by[desc]", request.getSortByDesc());
+        ChargebeeFilterMapper.appendSorting(params,"sort_by",request.getSortBy());
 
         // Customer Specific String Filters
         ChargebeeFilterMapper.appendStringFilter(params, "id", request.getId());

@@ -20,7 +20,9 @@ public class ListCustomersApiTest extends BaseTest {
 //                .setSortByDesc("created_at");
         ListCustomersApiRequest request = new ListCustomersApiRequest()
                 .setLimit(2)
-                .setSortByDesc("created_at")
+//                .setSortByDesc("created_at")
+                .setSortBy().setDesc("created_at")
+                .setId().startsWith("cust_")
                 ;
 
         ChargebeeListResponse responses = ApiResponseUtils.parseList(customerApi.listCustomersApi(request));

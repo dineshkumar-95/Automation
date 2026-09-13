@@ -34,13 +34,8 @@ public class StringFilter<P> {
     @JsonProperty("is_present")
     private Boolean isPresent;
 
-    @SuppressWarnings("unchecked")
-    public StringFilter() {
-        this.parent = (P) this;
-    }
-
     public StringFilter(P parent) {
-        this.parent = parent != null ? parent : (P) this;
+        this.parent = parent;
     }
 
     // Fluent Parent-Chaining Setters

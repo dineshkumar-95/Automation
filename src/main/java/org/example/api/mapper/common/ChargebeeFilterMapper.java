@@ -1,6 +1,7 @@
 package org.example.api.mapper.common;
 
 import org.example.api.models.request.filter.NumberFilter;
+import org.example.api.models.request.filter.Sort;
 import org.example.api.models.request.filter.StringFilter;
 import org.example.api.models.request.filter.TimestampFilter;
 import org.example.api.utils.QueryParamUtils;
@@ -14,6 +15,16 @@ import java.util.Map;
 public class ChargebeeFilterMapper {
 
     private ChargebeeFilterMapper() {
+    }
+
+
+    /**
+     * Serializes String filter operators (is, is_not, starts_with, in, not_in, is_present).
+     */
+    public static void appendSorting(Map<String, Object> params, String paramName, Sort<?> filter) {
+        if (filter == null) return;
+        QueryParamUtils.addParam(params, paramName + "[asc]", filter.getAsc());
+        QueryParamUtils.addParam(params, paramName + "[desc]", filter.getDesc());
     }
 
     /**

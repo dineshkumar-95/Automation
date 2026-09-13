@@ -2,6 +2,7 @@ package org.example.api.models.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.example.api.models.request.filter.Sort;
 import org.example.api.models.request.filter.StringFilter;
 import org.example.api.models.request.filter.TimestampFilter;
 
@@ -27,6 +28,20 @@ public class ListCustomersApiRequest {
 
     @JsonProperty("sort_by[desc]")
     private String sortByDesc;
+
+    @JsonProperty("sort_by")
+    private Sort<ListCustomersApiRequest> sortBy;
+
+
+    public Sort<ListCustomersApiRequest> getSortBy() {
+        return sortBy;
+    }
+
+    public Sort<ListCustomersApiRequest> setSortBy() {
+        this.sortBy = new Sort<>(this);
+        return this.sortBy;
+    }
+
 
     // Filter fields
     @JsonProperty("id")
@@ -63,18 +78,9 @@ public class ListCustomersApiRequest {
     }
 
     // Fluent Setters for Base Pagination & Sorting
-    public ListCustomersApiRequest limit(Integer limit) {
-        this.limit = limit;
-        return this;
-    }
 
     public ListCustomersApiRequest setLimit(Integer limit) {
         this.limit = limit;
-        return this;
-    }
-
-    public ListCustomersApiRequest offset(String offset) {
-        this.offset = offset;
         return this;
     }
 
@@ -83,28 +89,13 @@ public class ListCustomersApiRequest {
         return this;
     }
 
-    public ListCustomersApiRequest includeDeleted(Boolean includeDeleted) {
-        this.includeDeleted = includeDeleted;
-        return this;
-    }
-
     public ListCustomersApiRequest setIncludeDeleted(Boolean includeDeleted) {
         this.includeDeleted = includeDeleted;
         return this;
     }
 
-    public ListCustomersApiRequest sortByAsc(String sortByAsc) {
-        this.sortByAsc = sortByAsc;
-        return this;
-    }
-
     public ListCustomersApiRequest setSortByAsc(String sortByAsc) {
         this.sortByAsc = sortByAsc;
-        return this;
-    }
-
-    public ListCustomersApiRequest sortByDesc(String sortByDesc) {
-        this.sortByDesc = sortByDesc;
         return this;
     }
 
@@ -114,70 +105,70 @@ public class ListCustomersApiRequest {
     }
 
     // Fluent Sub-Builder Entry Methods (Returns Sub-Builder with 'this' as parent)
-    public StringFilter<ListCustomersApiRequest> id() {
+    public StringFilter<ListCustomersApiRequest> setId() {
         if (this.id == null) {
             this.id = new StringFilter<>(this);
         }
         return this.id;
     }
 
-    public StringFilter<ListCustomersApiRequest> firstName() {
+    public StringFilter<ListCustomersApiRequest> setFirstName() {
         if (this.firstName == null) {
             this.firstName = new StringFilter<>(this);
         }
         return this.firstName;
     }
 
-    public StringFilter<ListCustomersApiRequest> lastName() {
+    public StringFilter<ListCustomersApiRequest> setLastName() {
         if (this.lastName == null) {
             this.lastName = new StringFilter<>(this);
         }
         return this.lastName;
     }
 
-    public StringFilter<ListCustomersApiRequest> email() {
+    public StringFilter<ListCustomersApiRequest> setEmail() {
         if (this.email == null) {
             this.email = new StringFilter<>(this);
         }
         return this.email;
     }
 
-    public StringFilter<ListCustomersApiRequest> company() {
+    public StringFilter<ListCustomersApiRequest> setCompany() {
         if (this.company == null) {
             this.company = new StringFilter<>(this);
         }
         return this.company;
     }
 
-    public StringFilter<ListCustomersApiRequest> phone() {
+    public StringFilter<ListCustomersApiRequest> setPhone() {
         if (this.phone == null) {
             this.phone = new StringFilter<>(this);
         }
         return this.phone;
     }
 
-    public StringFilter<ListCustomersApiRequest> autoCollection() {
+    public StringFilter<ListCustomersApiRequest> seAutoCollection() {
         if (this.autoCollection == null) {
             this.autoCollection = new StringFilter<>(this);
         }
         return this.autoCollection;
     }
 
-    public StringFilter<ListCustomersApiRequest> taxability() {
+    public StringFilter<ListCustomersApiRequest> setTaxability() {
         if (this.taxability == null) {
             this.taxability = new StringFilter<>(this);
         }
         return this.taxability;
     }
 
-    public TimestampFilter<ListCustomersApiRequest> createdAt() {
+    public TimestampFilter<ListCustomersApiRequest> setCreatedAt() {
         if (this.createdAt == null) {
             this.createdAt = new TimestampFilter<>(this);
         }
         return this.createdAt;
     }
 
-    public TimestampFilter<ListCustomersApiRequest> updatedAt() {
+    public TimestampFilter<ListCustomersApiRequest> setUpdatedAt() {
         if (this.updatedAt == null) {
             this.updatedAt = new TimestampFilter<>(this);
         }
