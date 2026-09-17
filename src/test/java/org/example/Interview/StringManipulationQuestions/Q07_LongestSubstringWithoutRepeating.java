@@ -9,8 +9,8 @@ import java.util.*;
  */
 public class Q07_LongestSubstringWithoutRepeating {
     public static void main(String[] args) {
-        String str = "abcddcfadbbeade";
-        //System.out.println("Sliding window + Map (best): " + lengthOfLongestSubstringUsingMap(str));
+        String str = "abcdbcfadbbeade";
+        System.out.println("Sliding window + Map (best): " + lengthOfLongestSubstringUsingMap(str));
         System.out.println("Sliding window + Set: " + lengthOfLongestSubstringUsingSet(str));
         System.out.println("Brute force: " + lengthOfLongestSubstringBruteForce(str));
     }
@@ -29,7 +29,7 @@ public class Q07_LongestSubstringWithoutRepeating {
                 left = lastIndex.get(c) + 1;
             }
             lastIndex.put(c, i);
-            maxLen = Math.max(maxLen, i - left + 1);
+            maxLen = Math.max(maxLen, (i - left) + 1);
         }
         return maxLen;
     }

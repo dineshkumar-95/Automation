@@ -38,7 +38,9 @@ public class ListCustomersApiRequest {
     }
 
     public Sort<ListCustomersApiRequest> setSortBy() {
-        this.sortBy = new Sort<>(this);
+        if (sortBy==null){
+            this.sortBy = new Sort<>(this);
+        }
         return this.sortBy;
     }
 

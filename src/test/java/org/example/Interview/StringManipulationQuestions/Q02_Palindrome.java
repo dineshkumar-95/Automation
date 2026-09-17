@@ -25,7 +25,6 @@ public class Q02_Palindrome {
         if (str == null) {
             return false;
         }
-        int a =123;
         if (str.length() <= 1) {
             return true;
         }

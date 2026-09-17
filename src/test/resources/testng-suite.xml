@@ -11,8 +11,9 @@
         <parameter name="siteName" value="chrislibhi-test"/>
         <classes>
 <!--            <class name="Test.Customer.CustomerTesting"/>-->
-            <class name="org.example.ui.Subscription.CreateSubscriptionTest"/>
-            <class name="org.example.ui.demo.HealeniumDemoTest"/>
+<!--            <class name="org.example.ui.Subscription.CreateSubscriptionTest"/>-->
+<!--            <class name="org.example.ui.demo.HealeniumDemoTest"/>-->
+            <class name="org.example.Interview.StringManipulationQuestions.Q07_LongestSubstringWithoutRepeating"/>
         </classes>
     </test>
 

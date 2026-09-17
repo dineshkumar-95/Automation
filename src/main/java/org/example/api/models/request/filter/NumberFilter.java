@@ -37,13 +37,9 @@ public class NumberFilter<T extends Number, P> {
     @JsonProperty("between")
     private List<T> between;
 
-    @SuppressWarnings("unchecked")
-    public NumberFilter() {
-        this.parent = (P) this;
-    }
 
     public NumberFilter(P parent) {
-        this.parent = parent != null ? parent : (P) this;
+        this.parent = parent;
     }
 
     // Fluent Parent-Chaining Setters

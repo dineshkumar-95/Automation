@@ -1,5 +1,6 @@
 package org.example.api;
 
+import io.restassured.path.json.JsonPath;
 import org.example.BaseTest;
 import org.example.api.models.request.ListCustomersApiRequest;
 import org.example.api.models.response.Customer;
@@ -19,19 +20,25 @@ public class ListCustomersApiTest extends BaseTest {
 //                .setLimit(10)
 //                .setSortByDesc("created_at");
         ListCustomersApiRequest request = new ListCustomersApiRequest()
-                .setLimit(2)
+                .setLimit(1)
 //                .setSortByDesc("created_at")
                 .setSortBy().setDesc("created_at")
-                .setId().startsWith("cust_")
+//                .setId().startsWith("cust_")
                 ;
 
         ChargebeeListResponse responses = ApiResponseUtils.parseList(customerApi.listCustomersApi(request));
-        Customer customer = responses.getCustomers().get(1);
-        Card card = responses.getCards().get(1);
+        Customer customer = responses.getCustomers().get(0);
+        Card card = responses.getCards().get(0);
         System.out.println("********Customer id ********");
         System.out.println(customer.getId());
         System.out.println("********Card Type********");
         System.out.println(card.getCardType());
+
+        JsonPath jsonPath = customerApi.listCustomersApi(request).jsonPath();
+        String id = jsonPath.getString("list[0].customer.id");
+        System.out.println("********jsonPath  Customer id 0  ********");
+        System.out.println(id);
+
         
     }
 

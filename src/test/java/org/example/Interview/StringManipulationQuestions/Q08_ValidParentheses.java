@@ -34,6 +34,11 @@ public class Q08_ValidParentheses {
         }
         return stack.isEmpty();
     }
+    private static boolean isMatching(char open, char close) {
+        return (open == '(' && close == ')')
+                || (open == '{' && close == '}')
+                || (open == '[' && close == ']');
+    }
 
     // Classic Stack — same complexity, slightly heavier object
     public static boolean isValidUsingStack(String str) {
@@ -66,9 +71,5 @@ public class Q08_ValidParentheses {
         return str.isEmpty();
     }
 
-    private static boolean isMatching(char open, char close) {
-        return (open == '(' && close == ')')
-                || (open == '{' && close == '}')
-                || (open == '[' && close == ']');
-    }
+
 }
